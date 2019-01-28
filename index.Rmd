@@ -17,9 +17,12 @@ output: html_document
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
+# **Ana-Louise's R Journal**
 
+I have just started and am testing to see if my changes are working!
 
 ## How to use
+
 
 [https://github.com/CrumpLab/LabJournalWebsite](https://github.com/CrumpLab/LabJournalWebsite)
 
