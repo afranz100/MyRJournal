@@ -433,6 +433,36 @@ a+b+c</code></pre>
 <h3>Problem 3</h3>
 <p>Write code that will place the numbers 1 to 100 separately into a variable using for loop. Then, again using the seq function.</p>
 </div>
+<div id="problem-12" class="section level3">
+<h3>Problem 12</h3>
+<p>Count the number of words in a string variable</p>
+<pre class="r"><code>a &lt;- &quot;count the number of words in this sentence&quot;
+
+b &lt;- strsplit(a, split=&quot; &quot;)
+
+length(b[[1]])</code></pre>
+<pre><code>## [1] 8</code></pre>
+</div>
+<div id="problem-13" class="section level3">
+<h3>Problem 13</h3>
+<p>Count the number of sentences in a string variable</p>
+<pre class="r"><code>a &lt;- &quot;This is one sentence. This is another sentence as well. Here is the third sentence. But wait there is also a fourth sentence.&quot;
+
+b &lt;- strsplit(a, split=&quot;[.]&quot;)
+
+length(b[[1]])</code></pre>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="problem-14" class="section level3">
+<h3>Problem 14</h3>
+<p>Count the number of times a specific character occurs in a string variable</p>
+<pre class="r"><code>a &lt;- &quot;abcabbccaaabbbbc&quot;
+
+b &lt;- strsplit(a, split=&quot;a&quot;)
+
+length(b[[1]])</code></pre>
+<pre><code>## [1] 6</code></pre>
+</div>
 
 
 

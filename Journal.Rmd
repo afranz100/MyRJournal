@@ -49,5 +49,61 @@ Write code that will place the numbers 1 to 100 separately into a variable using
 
 ```{r}
 
+
+
 ```
+
+### Problem 12
+Count the number of words in a string variable
+
+```{r}
+a <- "count the number of words in this sentence"
+
+b <- strsplit(a, split=" ")
+
+length(b[[1]])
+
+```
+
+### Problem 13 
+Count the number of sentences in a string variable
+
+```{r}
+a <- "This is one sentence. This is another sentence as well. Here is the third sentence. But wait there is also a fourth sentence."
+
+b <- strsplit(a, split="[.]")
+
+length(b[[1]])
+
+```
+
+### Problem 14
+Count the number of times a specific character occurs in a string variable
+
+```{r}
+a <- "abcabbccaaabbbbc"
+
+b <- strsplit(a, split="a")
+
+length(b[[1]])
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
