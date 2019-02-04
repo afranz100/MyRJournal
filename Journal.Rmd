@@ -87,8 +87,40 @@ b <- strsplit(a, split="a")
 
 length(b[[1]])
 ```
+### Problem 15 
+Do a logical test to see if one word is found within the text of another string variable.
+
+```{r}
+
+test_word <- "hello"
+
+test_sentence <- c("is", "the", "word", "hello", "in", "this", "sentence")
+
+test_word%in%test_sentence
 
 
+```
+
+### Problem 16 
+Put the current computer time in milliseconds into a variable
+
+```{r}
+print(as.numeric(Sys.time())*1000, digits=15)
+```
+
+### ***Problem 17***
+Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time
+
+```{r}
+
+```
+
+### ***Problem 18*** 
+Read a .txt file or .csv file into a variable
+
+```{r}
+
+```
 
 
 
