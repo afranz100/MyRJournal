@@ -176,17 +176,67 @@ b <- length(x)
 
 Math
 1.	max()
+-Finds the max of a data set 
+```{r}
+?max
+
+c <-max(x)
+```
 2.	min()
+-Finds the min of a data set 
+```{r}
+d <- min(x)
+```
 3.	range()
+-Finds the range of a data set 
+```{r}
+e <- range(x)
+```
 4.	sum()
+-Finds the sum of a data set 
+```{r}
+t <-sum(x)
+```
 5.	mean()
+-Finds the average of a data set 
+```{r}
+f <- mean(x)
+```
 6.	median()
+-Finds the median of a data set 
+```{r}
+g <- median(x)
+```
 7.	var()
+-Finds the variance of a data set 
+```{r}
+h <- var(x)
+```
 8.	sd()
+-Finds the standard devaition of a data set
+```{r}
+u <- sd(x)
+```
 9.	cor()
+-Var, cov and cor compute the variance of x and the covariance or correlation of x and y if these are vectors
+```{r}
+?cor
+```
 10.	round()
+-Rounds the numbers in the data set 
+```{r}
+
+x <- c(2.7,4.9,6.1,8.5)
+a <- round(x)
+  
+```
 11.	abs()
-Matrices
+```{r}
+y <- c(-1,-10,2,4)
+b <- abs(y)
+```
+
+### Matrices
 1.	t()
 2.	diag()
 3.	rowSums()
@@ -207,20 +257,34 @@ Plotting
 Distributions
 1.	rnorm()
 2.	runif()
-Programming
+
+### Programming
 1.	show that you can define a function
+
 2.	show that you can write a for loop
+
 3.	show that you can write a while loop
+
 4.	show that you can write an if else statement
+
 5.	Explain what return() does inside a function, show you can use it
+-Gets the number out of the function. Tells the function to output
+
 6.	Explain what break() does, show you can use it
-Installing some packages
+
+###Installing some packages
 Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again.
+
 1.	ggplot2
+
 2.	dplyr
+
 3.	shiny
+
 4.	data.table
+
 5.	reshape2
+
 6.	stringr
 
 

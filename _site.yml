@@ -8,6 +8,8 @@ navbar:
       href: EasyProblems.html
     - text: "R Functions"
       href: RFunctions.html
+    - text: "Class Notes"
+      href: ClassNotes.html
     - text: "Links"
       href: Links.html
 output_dir: "docs"

@@ -1,0 +1,114 @@
+---
+title: "Class Notes"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+## Class 1 (1/28/19)
+Version control: time capsule of every change you’ve made to you files 	-copy of every time you’ve saved a file 
+
+Making a change and pushing it to web: 
+	-when you change in Studio, if you look at gitbub desktop, you can    see what has been changed 
+	-make sure you have saved your work in r studio 
+	-go to getup and select things you want to save 
+
+Option+command+I -> tell r markdown that you are now writing R code
+
+Control+enter -> put cursor on the first line of your code and it will run
+
+Equals sign in r means something else! use <- instead to assign variables
+	-You can put numbers or text into variables
+
+You can see the variables that you have assigned in your “environments” table on the top right corner of R-studio 
+
+Clear variables: session -> clear workspace 
+
+You can turn on/off R code in your website: set an option “eval” and the {r} place 
+	{r, eval=FALSE} and the code will not be evaluated. You are then able to build your website even though your code is not running correctly. 
+
+Stack exchange: forum to answer questions about R
+
+## Class 3 (2/11/19)
+
+###***Creating an R Package***
+What are packages? A series of R functions
+	-ex: making beautiful graphs 
+	
+CRAN: cloud based repository, that is shared across the world, society of R packages 
+
+TidyVerse: data analysis package
+
+Loading a package
+  -check the package button 
+  -or library(packagename)
+  
+Functions: creates a series of steps in one simple function 
+  -takes an input, does something, returns output 
+
+####***Format of writing a function:***
+```{r}
+name_of_function <- function(input){
+  #body of code 
+  return(output)
+}
+```
+
+####***Example function:***
+```{r}
+add_one <-function(x){
+  return(x+1)
+}
+
+add_one(6)
+```
+Breaking down the steps of your function using comments can ease in writing and understand where you went wrong. 
+
+You can also write a function that does not take any inputs
+
+####***Rolling a Dice example (no input)***
+```{r}
+sample(1:6,1) #using an instinsic to do that same thing a function will do 
+
+roll_dice <- function(){
+  return(sample(1:6,1))
+}
+
+#This function does the same thing as the instrinsic 
+```
+You can type in simply the name of a function and it will show you the steps. This is when you don't use the parenthesis.
+
+Return: important because that is what will come out of the function. You can tell it to return anything you like 
+
+Print vs return: 
+  -Print: prints whatever to the console, but does not return the       output of a function
+  -Return: allows the value to exist in memory which can also be       placed into another variable 
+  
+Making a package: 
+  1) make a new project 
+  2) new directory 
+  3) R package 
+  4) Choose "subdirectory" and make sure you know where you are          storing it 
+  
+Two folders "r" and "man"
+  -"r": containing "hello.R", which contains a simple function which        prints "Hello, World"
+  -"man": what you write in this section, is what will show up on the         help page when you ?funcition
+
+New Script, save it to R folder 
+  -Then you are able to create functions to combine which makes your    package. 
+  -Every function should be a separate .R folder 
+
+
+
+
+
+
