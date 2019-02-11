@@ -426,11 +426,29 @@ div.tocify {
 </ol>
 <pre class="r"><code>?ls</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>dir()</p></li>
-<li>list.files() Input and output</li>
-<li>save()</li>
-<li>load()</li>
-<li>data()</li>
+<li>dir() -These functions produce a character vector of the names of files or directories in the named directory.</li>
+</ol>
+<pre class="r"><code>?dir</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>list.files() -These functions produce a character vector of the names of files or directories in the named directory.</li>
+</ol>
+<pre class="r"><code>?list.files()</code></pre>
+</div>
+<div id="input-and-output" class="section level3">
+<h3><strong><em>Input and output</em></strong></h3>
+<ol style="list-style-type: decimal">
+<li>save() -Writes an external representation of R objects to the specified file.</li>
+</ol>
+<pre class="r"><code>?save</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>load() -Reload datasets written with the function save.</li>
+</ol>
+<pre class="r"><code>?load</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>data() -Loads specified data sets, or list the available data sets.</li>
+</ol>
+<pre class="r"><code>?data()</code></pre>
+<ol start="4" style="list-style-type: decimal">
 <li>library()</li>
 <li>read.table()</li>
 <li>read.csv()</li>
@@ -447,90 +465,12 @@ div.tocify {
 <li>matrix()</li>
 <li>factor()</li>
 <li>rbind()</li>
-<li>cbind() Slicing and extracting data indexing vectors</li>
-<li>x[n] nth element</li>
-<li>x[-n] all but nth element</li>
-<li>x[1:n] first n elements</li>
-<li>x[-(1:n)] elements from n+1 to the end</li>
-<li>x[c(1,4,2)] specific elements</li>
-<li>x[“name”] elements named “name”</li>
-<li>x[x&gt;3] all elements greater than 3</li>
-<li>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5</li>
-<li>x[x %in% c(“a”,“and”,“the”)] all elements in given set Indexing lists</li>
-<li>x[n] list with elements n</li>
-<li>x[[n]] nt h element of the list</li>
-<li>x[[“name”]] element of the list named “name”</li>
-<li>x$name id. Indexing matrices</li>
-<li>x[i,j] element at row i, column j</li>
-<li>x[i,] row i</li>
-<li>x[,j] column j</li>
-<li>x[,c(1,3)] columns 1 and 3</li>
-<li>x[“name”,] row named “name” Indexing data frames (matrix indexing plus the following)</li>
-<li>x[[“name”]] column named “name”</li>
-<li>x$nameid. Variable conversion</li>
-<li>as.data.frame(x)</li>
-<li>as.numeric(x)</li>
-<li>as.logical(x)</li>
-<li>as.character(x) Variable information</li>
-<li>is.na(x)</li>
-<li>is.null(x)</li>
-<li>is.data.frame(x)</li>
-<li>is.numeric(x)</li>
-<li>is.character(x)</li>
-<li>length(x)</li>
-<li>dim(x)</li>
-<li>dimnames(x)</li>
-<li>nrow(x)</li>
-<li>ncol(x)</li>
-<li>class()</li>
-<li>attributes() Data selection and manipulation</li>
-<li>which.max()</li>
-<li>which.min()</li>
-<li>which()</li>
-<li>sort()</li>
-<li>unique()</li>
-<li>table()</li>
-<li>sample() Math</li>
-<li>max()</li>
-<li>min()</li>
-<li>range()</li>
-<li>sum()</li>
-<li>mean()</li>
-<li>median()</li>
-<li>var()</li>
-<li>sd()</li>
-<li>cor()</li>
-<li>round()</li>
-<li>abs() Matrices</li>
-<li>t()</li>
-<li>diag()</li>
-<li>rowSums()</li>
-<li>colSums()</li>
-<li>rowMeans()</li>
-<li>colMeans() Advanced Data processing</li>
-<li>apply()</li>
-<li>aggregate() Strings</li>
-<li>paste()</li>
-<li>strsplit()</li>
-<li>tolower()</li>
-<li>toupper Plotting</li>
-<li>hist()</li>
-<li>plot() Distributions</li>
-<li>rnorm()</li>
-<li>runif() Programming</li>
-<li>show that you can define a function</li>
-<li>show that you can write a for loop</li>
-<li>show that you can write a while loop</li>
-<li>show that you can write an if else statement</li>
-<li>Explain what return() does inside a function, show you can use it</li>
-<li>Explain what break() does, show you can use it Installing some packages Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again.</li>
-<li>ggplot2</li>
-<li>dplyr</li>
-<li>shiny</li>
-<li>data.table</li>
-<li>reshape2</li>
-<li><p>stringr</p></li>
+<li>cbind()</li>
 </ol>
+</div>
+<div id="slicing-and-extracting-data" class="section level3">
+<h3><strong><em>Slicing and extracting data</em></strong></h3>
+<p>indexing vectors 1. x[n] nth element 2. x[-n] all but nth element 3. x[1:n] first n elements 4. x[-(1:n)] elements from n+1 to the end 5. x[c(1,4,2)] specific elements 6. x[“name”] elements named “name” 7. x[x&gt;3] all elements greater than 3 8. x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5 9. x[x %in% c(“a”,“and”,“the”)] all elements in given set Indexing lists 1. x[n] list with elements n 2. x[[n]] nt h element of the list 3. x[[“name”]] element of the list named “name” 4. x<span class="math inline">\(name id. Indexing matrices 1. x[i,j] element at row i, column j 2. x[i,] row i 3. x[,j] column j 4. x[,c(1,3)] columns 1 and 3 5. x[“name”,] row named “name” Indexing data frames (matrix indexing plus the following) 1. x[[“name”]] column named “name” 2. x\)</span>nameid. Variable conversion 1. as.data.frame(x) 2. as.numeric(x) 3. as.logical(x) 4. as.character(x) Variable information 1. is.na(x) 2. is.null(x) 3. is.data.frame(x) 4. is.numeric(x) 5. is.character(x) 6. length(x) 7. dim(x) 8. dimnames(x) 9. nrow(x) 10. ncol(x) 11. class() 12. attributes() Data selection and manipulation 1. which.max() 2. which.min() 3. which() 4. sort() 5. unique() 6. table() 7. sample() Math 1. max() 2. min() 3. range() 4. sum() 5. mean() 6. median() 7. var() 8. sd() 9. cor() 10. round() 11. abs() Matrices 1. t() 2. diag() 3. rowSums() 4. colSums() 5. rowMeans() 6. colMeans() Advanced Data processing 1. apply() 2. aggregate() Strings 1. paste() 2. strsplit() 3. tolower() 4. toupper Plotting 1. hist() 2. plot() Distributions 1. rnorm() 2. runif() Programming 1. show that you can define a function 2. show that you can write a for loop 3. show that you can write a while loop 4. show that you can write an if else statement 5. Explain what return() does inside a function, show you can use it 6. Explain what break() does, show you can use it Installing some packages Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again. 1. ggplot2 2. dplyr 3. shiny 4. data.table 5. reshape2 6. stringr</p>
 </div>
 </div>
 

@@ -37,15 +37,33 @@ help("mean")
 
 ```
 4.	dir()
+-These functions produce a character vector of the names of files or directories in the named directory.
 ```{r}
-
+?dir
+```
+5.	list.files()
+-These functions produce a character vector of the names of files or directories in the named directory.
+```{r}
+?list.files()
 ```
 
-5.	list.files()
-Input and output
+### ***Input and output***
 1.	save()
+-Writes an external representation of R objects to the specified file. 
+```{r}
+?save
+
+```
 2.	load()
+-Reload datasets written with the function save.
+```{r}
+?load
+```
 3.	data()
+-Loads specified data sets, or list the available data sets.
+```{r}
+?data()
+```
 4.	library()
 5.	read.table()
 6.	read.csv()
@@ -64,7 +82,8 @@ Data Creation
 8.	factor()
 9.	rbind()
 10.	cbind()
-Slicing and extracting data
+
+### ***Slicing and extracting data***
 indexing vectors
 1.	x[n] nth element
 2.	x[-n] all but nth element
