@@ -108,6 +108,9 @@ New Script, save it to R folder
   -Every function should be a separate .R folder 
 
 
+Loading packages from R 
+"devtools"
+
 
 
 
