@@ -21,9 +21,26 @@ I’ve selected numerous functions from the above two sources, and I am listing 
 
 ### ***General bits***
 1.	help(topic)
+-This function helps to find info about the another R function. Simply put the function in the parenthesis and it will pull up info.
+```{r}
+help("mean")
+```
 2.	?topic
+-This function is similar to help
+```{r}
+?mean
+```
 3.	ls()
+-Return a vector of character strings giving the names of the objects in the specified environment.
+```{r}
+?ls
+
+```
 4.	dir()
+```{r}
+
+```
+
 5.	list.files()
 Input and output
 1.	save()
