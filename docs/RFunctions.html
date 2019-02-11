@@ -469,8 +469,91 @@ div.tocify {
 </ol>
 </div>
 <div id="slicing-and-extracting-data" class="section level3">
-<h3><strong><em>Slicing and extracting data</em></strong></h3>
-<p>indexing vectors 1. x[n] nth element 2. x[-n] all but nth element 3. x[1:n] first n elements 4. x[-(1:n)] elements from n+1 to the end 5. x[c(1,4,2)] specific elements 6. x[“name”] elements named “name” 7. x[x&gt;3] all elements greater than 3 8. x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5 9. x[x %in% c(“a”,“and”,“the”)] all elements in given set Indexing lists 1. x[n] list with elements n 2. x[[n]] nt h element of the list 3. x[[“name”]] element of the list named “name” 4. x<span class="math inline">\(name id. Indexing matrices 1. x[i,j] element at row i, column j 2. x[i,] row i 3. x[,j] column j 4. x[,c(1,3)] columns 1 and 3 5. x[“name”,] row named “name” Indexing data frames (matrix indexing plus the following) 1. x[[“name”]] column named “name” 2. x\)</span>nameid. Variable conversion 1. as.data.frame(x) 2. as.numeric(x) 3. as.logical(x) 4. as.character(x) Variable information 1. is.na(x) 2. is.null(x) 3. is.data.frame(x) 4. is.numeric(x) 5. is.character(x) 6. length(x) 7. dim(x) 8. dimnames(x) 9. nrow(x) 10. ncol(x) 11. class() 12. attributes() Data selection and manipulation 1. which.max() 2. which.min() 3. which() 4. sort() 5. unique() 6. table() 7. sample() Math 1. max() 2. min() 3. range() 4. sum() 5. mean() 6. median() 7. var() 8. sd() 9. cor() 10. round() 11. abs() Matrices 1. t() 2. diag() 3. rowSums() 4. colSums() 5. rowMeans() 6. colMeans() Advanced Data processing 1. apply() 2. aggregate() Strings 1. paste() 2. strsplit() 3. tolower() 4. toupper Plotting 1. hist() 2. plot() Distributions 1. rnorm() 2. runif() Programming 1. show that you can define a function 2. show that you can write a for loop 3. show that you can write a while loop 4. show that you can write an if else statement 5. Explain what return() does inside a function, show you can use it 6. Explain what break() does, show you can use it Installing some packages Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again. 1. ggplot2 2. dplyr 3. shiny 4. data.table 5. reshape2 6. stringr</p>
+<h3>Slicing and extracting data</h3>
+</div>
+<div id="indexing-vectors" class="section level3">
+<h3><strong><em>Indexing vectors</em></strong></h3>
+<ol style="list-style-type: decimal">
+<li><p>x[n] nth element</p></li>
+<li><p>x[-n] all but nth element</p></li>
+<li><p>x[1:n] first n elements</p></li>
+<li><p>x[-(1:n)] elements from n+1 to the end</p></li>
+<li><p>x[c(1,4,2)] specific elements</p></li>
+<li><p>x[“name”] elements named “name”</p></li>
+<li><p>x[x&gt;3] all elements greater than 3</p></li>
+<li><p>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5</p></li>
+<li><p>x[x %in% c(“a”,“and”,“the”)] all elements in given set</p></li>
+</ol>
+</div>
+<div id="indexing-lists" class="section level3">
+<h3><strong><em>Indexing lists</em></strong></h3>
+<ol style="list-style-type: decimal">
+<li>x[n] list with elements n</li>
+<li>x[[n]] nt h element of the list</li>
+<li>x[[“name”]] element of the list named “name”</li>
+<li>x$name id.</li>
+</ol>
+</div>
+<div id="indexing-matrices" class="section level3">
+<h3><strong><em>Indexing matrices</em></strong></h3>
+<ol style="list-style-type: decimal">
+<li>x[i,j] element at row i, column j</li>
+<li>x[i,] row i</li>
+<li>x[,j] column j</li>
+<li>x[,c(1,3)] columns 1 and 3</li>
+<li>x[“name”,] row named “name”</li>
+</ol>
+</div>
+<div id="indexing-data-frames-matrix-indexing-plus-the-following" class="section level3">
+<h3><strong><em>Indexing data frames (matrix indexing plus the following)</em></strong></h3>
+<ol style="list-style-type: decimal">
+<li>x[[“name”]] column named “name”</li>
+<li>x$nameid.</li>
+</ol>
+</div>
+<div id="variable-conversion" class="section level3">
+<h3>Variable conversion</h3>
+<ol style="list-style-type: decimal">
+<li><p>as.data.frame(x)</p></li>
+<li><p>as.numeric(x)</p></li>
+<li><p>as.logical(x)</p></li>
+<li><p>as.character(x)</p></li>
+</ol>
+</div>
+<div id="variable-information" class="section level3">
+<h3>Variable information</h3>
+<ol style="list-style-type: decimal">
+<li><p>is.na(x)</p></li>
+<li><p>is.null(x)</p></li>
+<li><p>is.data.frame(x)</p></li>
+<li><p>is.numeric(x)</p></li>
+<li><p>is.character(x)</p></li>
+<li><p>length(x)</p></li>
+</ol>
+<pre class="r"><code>x &lt;- c(1,2,3,4,5)
+
+b &lt;- length(x)</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li><p>dim(x)</p></li>
+<li><p>dimnames(x)</p></li>
+<li><p>nrow(x)</p></li>
+<li><p>ncol(x)</p></li>
+<li><p>class()</p></li>
+<li><p>attributes()</p></li>
+</ol>
+</div>
+<div id="data-selection-and-manipulation" class="section level3">
+<h3>Data selection and manipulation</h3>
+<ol style="list-style-type: decimal">
+<li><p>which.max()</p></li>
+<li><p>which.min()</p></li>
+<li><p>which()</p></li>
+<li><p>sort()</p></li>
+<li><p>unique()</p></li>
+<li><p>table()</p></li>
+<li><p>sample()</p></li>
+</ol>
+<p>Math 1. max() 2. min() 3. range() 4. sum() 5. mean() 6. median() 7. var() 8. sd() 9. cor() 10. round() 11. abs() Matrices 1. t() 2. diag() 3. rowSums() 4. colSums() 5. rowMeans() 6. colMeans() Advanced Data processing 1. apply() 2. aggregate() Strings 1. paste() 2. strsplit() 3. tolower() 4. toupper Plotting 1. hist() 2. plot() Distributions 1. rnorm() 2. runif() Programming 1. show that you can define a function 2. show that you can write a for loop 3. show that you can write a while loop 4. show that you can write an if else statement 5. Explain what return() does inside a function, show you can use it 6. Explain what break() does, show you can use it Installing some packages Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again. 1. ggplot2 2. dplyr 3. shiny 4. data.table 5. reshape2 6. stringr</p>
 </div>
 </div>
 
