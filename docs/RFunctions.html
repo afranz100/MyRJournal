@@ -11,7 +11,7 @@
 
 
 
-<title>MyLabJournal</title>
+<title>R Functions</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -264,6 +267,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -302,40 +400,135 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">MyLabJournal</h1>
+<h1 class="title toc-ignore">R Functions</h1>
 
 </div>
 
 
-<style type="text/css">
-.title {
-  display: none;
-}
-
-#getting-started img {
-  margin-right: 10px;
-}
-
-</style>
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
-<h1 id="ana-louises-r-journal"><strong>Ana-Louise’s R Journal</strong></h1>
-<p>I have just started and am testing to see if my changes are working!</p>
-<h2 id="how-to-use">How to use</h2>
-<p><a href="https://github.com/CrumpLab/LabJournalWebsite" class="uri">https://github.com/CrumpLab/LabJournalWebsite</a></p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Blog/journal what you are doing in R, by editing the Journal.Rmd. See the <a href="https://crumplab.github.io/LabJournalWebsite/Journal.html">Journal page</a> for an example of what to do to get started learning R.</p></li>
-<li><p>See the <a href="https://crumplab.github.io/LabJournalWebsite/Links.html">links page</a> for lots of helpful links on learning R.</p></li>
-<li><p>Change everything to make it your own.</p></li>
+<div id="the-assignment" class="section level2">
+<h2>The assignment</h2>
+<p>I’ve selected numerous functions from the above two sources, and I am listing them below under different categories. Your job is to create an .rmd file to add to your webpage. In this file you will copy the list of function names below. For each one, give a brief description of what it does, and then write a code-chunk demonstrating that you can use the function.</p>
+<div id="list-of-functions" class="section level3">
+<h3>List of functions</h3>
+</div>
+<div id="general-bits" class="section level3">
+<h3><strong><em>General bits</em></strong></h3>
+<ol style="list-style-type: decimal">
+<li>help(topic)</li>
+<li>?topic</li>
+<li>ls()</li>
+<li>dir()</li>
+<li>list.files() Input and output</li>
+<li>save()</li>
+<li>load()</li>
+<li>data()</li>
+<li>library()</li>
+<li>read.table()</li>
+<li>read.csv()</li>
+<li>scan()</li>
+<li>print()</li>
+<li>cat()</li>
+<li>write.table() Data Creation</li>
+<li>c()</li>
+<li>from:to (where from and to are replaced with numbers, e.g. 1:10)</li>
+<li>seq()</li>
+<li>rep()</li>
+<li>data.frame()</li>
+<li>list()</li>
+<li>matrix()</li>
+<li>factor()</li>
+<li>rbind()</li>
+<li>cbind() Slicing and extracting data indexing vectors</li>
+<li>x[n] nth element</li>
+<li>x[-n] all but nth element</li>
+<li>x[1:n] first n elements</li>
+<li>x[-(1:n)] elements from n+1 to the end</li>
+<li>x[c(1,4,2)] specific elements</li>
+<li>x[“name”] elements named “name”</li>
+<li>x[x&gt;3] all elements greater than 3</li>
+<li>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5</li>
+<li>x[x %in% c(“a”,“and”,“the”)] all elements in given set Indexing lists</li>
+<li>x[n] list with elements n</li>
+<li>x[[n]] nt h element of the list</li>
+<li>x[[“name”]] element of the list named “name”</li>
+<li>x$name id. Indexing matrices</li>
+<li>x[i,j] element at row i, column j</li>
+<li>x[i,] row i</li>
+<li>x[,j] column j</li>
+<li>x[,c(1,3)] columns 1 and 3</li>
+<li>x[“name”,] row named “name” Indexing data frames (matrix indexing plus the following)</li>
+<li>x[[“name”]] column named “name”</li>
+<li>x$nameid. Variable conversion</li>
+<li>as.data.frame(x)</li>
+<li>as.numeric(x)</li>
+<li>as.logical(x)</li>
+<li>as.character(x) Variable information</li>
+<li>is.na(x)</li>
+<li>is.null(x)</li>
+<li>is.data.frame(x)</li>
+<li>is.numeric(x)</li>
+<li>is.character(x)</li>
+<li>length(x)</li>
+<li>dim(x)</li>
+<li>dimnames(x)</li>
+<li>nrow(x)</li>
+<li>ncol(x)</li>
+<li>class()</li>
+<li>attributes() Data selection and manipulation</li>
+<li>which.max()</li>
+<li>which.min()</li>
+<li>which()</li>
+<li>sort()</li>
+<li>unique()</li>
+<li>table()</li>
+<li>sample() Math</li>
+<li>max()</li>
+<li>min()</li>
+<li>range()</li>
+<li>sum()</li>
+<li>mean()</li>
+<li>median()</li>
+<li>var()</li>
+<li>sd()</li>
+<li>cor()</li>
+<li>round()</li>
+<li>abs() Matrices</li>
+<li>t()</li>
+<li>diag()</li>
+<li>rowSums()</li>
+<li>colSums()</li>
+<li>rowMeans()</li>
+<li>colMeans() Advanced Data processing</li>
+<li>apply()</li>
+<li>aggregate() Strings</li>
+<li>paste()</li>
+<li>strsplit()</li>
+<li>tolower()</li>
+<li>toupper Plotting</li>
+<li>hist()</li>
+<li>plot() Distributions</li>
+<li>rnorm()</li>
+<li>runif() Programming</li>
+<li>show that you can define a function</li>
+<li>show that you can write a for loop</li>
+<li>show that you can write a while loop</li>
+<li>show that you can write an if else statement</li>
+<li>Explain what return() does inside a function, show you can use it</li>
+<li>Explain what break() does, show you can use it Installing some packages Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again.</li>
+<li>ggplot2</li>
+<li>dplyr</li>
+<li>shiny</li>
+<li>data.table</li>
+<li>reshape2</li>
+<li>stringr</li>
 </ol>
 </div>
-<div class="col-sm-6">
-<h3 id="crump-lab-human-cognition-and-performance"><a href="https://crumplab.github.io">Crump Lab: Human Cognition and Performance</a></h3>
-<p><a href = "https://crumplab.github.io"> <img src="images/logo.png" /> </a></p>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 

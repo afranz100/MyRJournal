@@ -5,7 +5,9 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "Easy Problems"
-      href: Journal.html
+      href: EasyProblems.html
+    - text: "R Functions"
+      href: RFunctions.html
     - text: "Links"
       href: Links.html
 output_dir: "docs"

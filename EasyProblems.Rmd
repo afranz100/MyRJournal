@@ -1,0 +1,154 @@
+---
+title: "Easy Problems"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+### Problem 1
+
+Do simple math with numbers, addition, subtraction, multiplication, division
+
+```{r}
+
+1+1
+6-5
+9*0
+10/5
+
+```
+### Problem 2
+
+Put numbers into variables, do simple math on the variables 
+
+```{r, eval=FALSE}
+
+a <- 1
+b <- 3
+
+a+b
+b-a
+a*b
+b/a
+
+c <- 5
+
+a+b+c
+```
+### Problem 3
+Write code that will place the numbers 1 to 100 separately into a variable using for loop. Then, again using the seq function.
+
+```{r}
+
+
+
+```
+
+### Problem 12
+Count the number of words in a string variable
+
+```{r}
+a <- "count the number of words in this sentence"
+
+b <- strsplit(a, split=" ")
+
+length(b[[1]])
+
+```
+
+### Problem 13 
+Count the number of sentences in a string variable
+
+```{r}
+a <- "This is one sentence. This is another sentence as well. Here is the third sentence. But wait there is also a fourth sentence."
+
+b <- strsplit(a, split="[.]")
+
+length(b[[1]])
+
+```
+
+### Problem 14
+Count the number of times a specific character occurs in a string variable
+
+```{r}
+a <- "abcabbccaaabbbbc"
+
+b <- strsplit(a, split="a")
+
+length(b[[1]])
+```
+### Problem 15 
+Do a logical test to see if one word is found within the text of another string variable.
+
+```{r}
+
+test_word <- "hello"
+
+test_sentence <- c("is", "the", "word", "hello", "in", "this", "sentence")
+
+test_word%in%test_sentence
+
+
+```
+
+### Problem 16 
+Put the current computer time in milliseconds into a variable
+
+```{r}
+print(as.numeric(Sys.time())*1000, digits=15)
+```
+
+### ***Problem 17***
+Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time
+
+```{r}
+
+```
+
+### ***Problem 18*** 
+Read a .txt file or .csv file into a variable
+
+```{r}
+#x <- scan("Thisismytextfile.txt", what=character)
+#xtext <- read.delim(thisismytextfile.txt)
+
+#DATA_DIR <- system.file("extdata/", package = "readtext")
+
+#x <- read.csv(file=Thisismytextfile.csv, header=FALSE)
+
+
+```
+
+### Problem 19 
+Output the contents of a variable to a .txt file
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

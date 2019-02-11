@@ -11,7 +11,7 @@
 
 
 
-<title>MyLabJournal</title>
+<title>Easy Problems</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -264,6 +267,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -302,40 +400,111 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">MyLabJournal</h1>
+<h1 class="title toc-ignore">Easy Problems</h1>
 
 </div>
 
 
-<style type="text/css">
-.title {
-  display: none;
-}
-
-#getting-started img {
-  margin-right: 10px;
-}
-
-</style>
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
-<h1 id="ana-louises-r-journal"><strong>Ana-Louise’s R Journal</strong></h1>
-<p>I have just started and am testing to see if my changes are working!</p>
-<h2 id="how-to-use">How to use</h2>
-<p><a href="https://github.com/CrumpLab/LabJournalWebsite" class="uri">https://github.com/CrumpLab/LabJournalWebsite</a></p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Blog/journal what you are doing in R, by editing the Journal.Rmd. See the <a href="https://crumplab.github.io/LabJournalWebsite/Journal.html">Journal page</a> for an example of what to do to get started learning R.</p></li>
-<li><p>See the <a href="https://crumplab.github.io/LabJournalWebsite/Links.html">links page</a> for lots of helpful links on learning R.</p></li>
-<li><p>Change everything to make it your own.</p></li>
-</ol>
+<div id="problem-1" class="section level3">
+<h3>Problem 1</h3>
+<p>Do simple math with numbers, addition, subtraction, multiplication, division</p>
+<pre class="r"><code>1+1</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>6-5</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>9*0</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>10/5</code></pre>
+<pre><code>## [1] 2</code></pre>
 </div>
-<div class="col-sm-6">
-<h3 id="crump-lab-human-cognition-and-performance"><a href="https://crumplab.github.io">Crump Lab: Human Cognition and Performance</a></h3>
-<p><a href = "https://crumplab.github.io"> <img src="images/logo.png" /> </a></p>
+<div id="problem-2" class="section level3">
+<h3>Problem 2</h3>
+<p>Put numbers into variables, do simple math on the variables</p>
+<pre class="r"><code>a &lt;- 1
+b &lt;- 3
+
+a+b
+b-a
+a*b
+b/a
+
+c &lt;- 5
+
+a+b+c</code></pre>
+</div>
+<div id="problem-3" class="section level3">
+<h3>Problem 3</h3>
+<p>Write code that will place the numbers 1 to 100 separately into a variable using for loop. Then, again using the seq function.</p>
+</div>
+<div id="problem-12" class="section level3">
+<h3>Problem 12</h3>
+<p>Count the number of words in a string variable</p>
+<pre class="r"><code>a &lt;- &quot;count the number of words in this sentence&quot;
+
+b &lt;- strsplit(a, split=&quot; &quot;)
+
+length(b[[1]])</code></pre>
+<pre><code>## [1] 8</code></pre>
+</div>
+<div id="problem-13" class="section level3">
+<h3>Problem 13</h3>
+<p>Count the number of sentences in a string variable</p>
+<pre class="r"><code>a &lt;- &quot;This is one sentence. This is another sentence as well. Here is the third sentence. But wait there is also a fourth sentence.&quot;
+
+b &lt;- strsplit(a, split=&quot;[.]&quot;)
+
+length(b[[1]])</code></pre>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="problem-14" class="section level3">
+<h3>Problem 14</h3>
+<p>Count the number of times a specific character occurs in a string variable</p>
+<pre class="r"><code>a &lt;- &quot;abcabbccaaabbbbc&quot;
+
+b &lt;- strsplit(a, split=&quot;a&quot;)
+
+length(b[[1]])</code></pre>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="problem-15" class="section level3">
+<h3>Problem 15</h3>
+<p>Do a logical test to see if one word is found within the text of another string variable.</p>
+<pre class="r"><code>test_word &lt;- &quot;hello&quot;
+
+test_sentence &lt;- c(&quot;is&quot;, &quot;the&quot;, &quot;word&quot;, &quot;hello&quot;, &quot;in&quot;, &quot;this&quot;, &quot;sentence&quot;)
+
+test_word%in%test_sentence</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="problem-16" class="section level3">
+<h3>Problem 16</h3>
+<p>Put the current computer time in milliseconds into a variable</p>
+<pre class="r"><code>print(as.numeric(Sys.time())*1000, digits=15)</code></pre>
+<pre><code>## [1] 1549913592499.47</code></pre>
+</div>
+<div id="problem-17" class="section level3">
+<h3><strong><em>Problem 17</em></strong></h3>
+<p>Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time</p>
+</div>
+<div id="problem-18" class="section level3">
+<h3><strong><em>Problem 18</em></strong></h3>
+<p>Read a .txt file or .csv file into a variable</p>
+<pre class="r"><code>#x &lt;- scan(&quot;Thisismytextfile.txt&quot;, what=character)
+#xtext &lt;- read.delim(thisismytextfile.txt)
+
+#DATA_DIR &lt;- system.file(&quot;extdata/&quot;, package = &quot;readtext&quot;)
+
+#x &lt;- read.csv(file=Thisismytextfile.csv, header=FALSE)</code></pre>
+</div>
+<div id="problem-19" class="section level3">
+<h3>Problem 19</h3>
+<p>Output the contents of a variable to a .txt file</p>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
