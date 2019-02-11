@@ -1,5 +1,5 @@
 ---
-title: "Journal"
+title: "Easy Problems"
 output:
   html_document:
     toc: true
@@ -119,9 +119,22 @@ Measure how long a piece of code takes to run by measuring the time before the c
 Read a .txt file or .csv file into a variable
 
 ```{r}
+x <- scan("Thisismytextfile.txt", what=character)
+xtext <- read.delim(thisismytextfile.txt)
+
+DATA_DIR <- system.file("extdata/", package = "readtext")
+
+x <- read.csv(file=Thisismytextfile.csv, header=FALSE)
+
 
 ```
 
+### Problem 19 
+Output the contents of a variable to a .txt file
+
+```{r}
+
+```
 
 
 
