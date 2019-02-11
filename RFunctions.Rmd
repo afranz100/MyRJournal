@@ -71,7 +71,8 @@ help("mean")
 8.	print()
 9.	cat()
 10.	write.table()
-Data Creation
+ 
+### Data Creation
 1.	c()
 2.	from:to (where from and to are replaced with numbers, e.g. 1:10)
 3.	seq()
@@ -174,7 +175,7 @@ b <- length(x)
 
 7.	sample()
 
-Math
+### Math
 1.	max()
 -Finds the max of a data set 
 ```{r}
