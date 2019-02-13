@@ -464,16 +464,28 @@ div.tocify {
 <div id="data-creation" class="section level3">
 <h3>Data Creation</h3>
 <ol style="list-style-type: decimal">
-<li>c()</li>
-<li>from:to (where from and to are replaced with numbers, e.g. 1:10)</li>
-<li>seq()</li>
-<li>rep()</li>
-<li>data.frame()</li>
-<li>list()</li>
-<li>matrix()</li>
-<li>factor()</li>
-<li>rbind()</li>
-<li>cbind()</li>
+<li>c() -This is a generic function which combines its arguments.</li>
+</ol>
+<pre class="r"><code>a &lt;- c(1,2,3,4,5)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>from:to (where from and to are replaced with numbers, e.g. 1:10)</p></li>
+<li><p>seq() -Generate regular sequences. seq is a standard generic with a default method</p></li>
+</ol>
+<pre class="r"><code>b &lt;- seq(1:5)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>rep() -Replicates the values in x. It is a generic function</p></li>
+<li><p>data.frame() The function data.frame() creates data frames, tightly coupled collections of variables which share many of the properties of matrices and of lists, used as the fundamental data structure by most of R’s modeling software</p></li>
+<li><p>list() -Functions to construct, coerce and check for both kinds of R lists.</p></li>
+</ol>
+<pre class="r"><code>?list</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>matrix() -Matrix creates a matrix from the given set of values.</li>
+</ol>
+<pre class="r"><code>M &lt;- matrix(c(1:10), nrow = 3, byrow = TRUE)</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li><p>factor() -The function factor is used to encode a vector as a factor (the terms ‘category’ and ‘enumerated type’ are also used for factors). If argument ordered is TRUE, the factor levels are assumed to be ordered. For compatibility with S there is also a function ordered.</p></li>
+<li><p>rbind() -Take a sequence of vector, matrix or data-frame arguments and combine by columns or rows, respectively</p></li>
+<li><p>cbind() -Take a sequence of vector, matrix or data-frame arguments and combine by columns or rows, respectively.`</p></li>
 </ol>
 </div>
 <div id="slicing-and-extracting-data" class="section level3">
@@ -531,36 +543,58 @@ div.tocify {
 <div id="variable-information" class="section level3">
 <h3>Variable information</h3>
 <ol style="list-style-type: decimal">
-<li><p>is.na(x)</p></li>
+<li>is.na(x) -NA is a logical constant of length 1 which contains a missing value indicator. NA can be coerced to any other vector type except raw. There are also constants NA_integer_, NA_real_, NA_complex_ and NA_character_ of the other atomic vector types which support missing values: all of these are reserved words in the R language.</li>
+</ol>
+<pre class="r"><code>?is.na()</code></pre>
+<ol start="2" style="list-style-type: decimal">
 <li><p>is.null(x)</p></li>
 <li><p>is.data.frame(x)</p></li>
 <li><p>is.numeric(x)</p></li>
-<li><p>is.character(x)</p></li>
-<li><p>length(x)</p></li>
+<li><p>is.character(x) -This function</p></li>
+<li><p>length(x) -This function definds the size of a vector</p></li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,3,4,5)
 
 b &lt;- length(x)</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li><p>dim(x)</p></li>
-<li><p>dimnames(x)</p></li>
-<li><p>nrow(x)</p></li>
-<li><p>ncol(x)</p></li>
-<li><p>class()</p></li>
-<li><p>attributes()</p></li>
+<li><p>dim(x) -This function definds the dimentnions of an object</p></li>
+<li><p>dimnames(x) -Retrieve or set the dimnames of an object.</p></li>
+<li><p>nrow(x) -Returns the number of rows present in a matrix</p></li>
+<li><p>ncol(x) -Returns the number of columns present in a matrix</p></li>
+<li><p>class() -This functions tells the class type the data belongs to</p></li>
+<li><p>attributes() -These functions access an object’s attributes. The first form below returns the object’s attribute list. The replacement forms uses the list on the right-hand side of the assignment as the object’s attributes (if appropriate).</p></li>
 </ol>
 </div>
 <div id="data-selection-and-manipulation" class="section level3">
 <h3>Data selection and manipulation</h3>
 <ol style="list-style-type: decimal">
-<li><p>which.max()</p></li>
-<li><p>which.min()</p></li>
-<li><p>which()</p></li>
-<li><p>sort()</p></li>
-<li><p>unique()</p></li>
-<li><p>table()</p></li>
-<li><p>sample()</p></li>
+<li>which.max() -Determines the location, i.e., index of the (first) minimum or maximum of a numeric (or logical) vector</li>
 </ol>
+<pre class="r"><code>?which.max</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>which.min() -Determines the location, i.e., index of the (first) minimum or maximum of a numeric (or logical) vector.</li>
+</ol>
+<pre class="r"><code>?which.min</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>which() -Give the TRUE indices of a logical object, allowing for array indices.</li>
+</ol>
+<pre class="r"><code>?which</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>sort() -Sort (or order) a vector or factor (partially) into ascending or descending order. For ordering along more than one variable</li>
+</ol>
+<pre class="r"><code>?sort</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>unique() -Returns a vector, data frame or array like x but with duplicate elements/rows removed.</li>
+</ol>
+<pre class="r"><code>?unique()</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>table() -Uses the cross-classifying factors to build a contingency table of the counts at each combination of factor levels.</li>
+</ol>
+<pre class="r"><code>?table</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>sample() -Takes a sample of the specified size from the elements of x using either with or without replacement.</li>
+</ol>
+<pre class="r"><code>?sample</code></pre>
 </div>
 <div id="math" class="section level3">
 <h3>Math</h3>
@@ -621,7 +655,12 @@ b &lt;- abs(y)</code></pre>
 <li>rowSums()</li>
 <li>colSums()</li>
 <li>rowMeans()</li>
-<li>colMeans() Advanced Data processing</li>
+<li>colMeans()</li>
+</ol>
+</div>
+<div id="advanced-data-processing" class="section level3">
+<h3>Advanced Data processing</h3>
+<ol style="list-style-type: decimal">
 <li>apply()</li>
 <li>aggregate() Strings</li>
 <li>paste()</li>
@@ -649,12 +688,12 @@ b &lt;- abs(y)</code></pre>
 <h3>Installing some packages</h3>
 <p>Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again.</p>
 <ol style="list-style-type: decimal">
-<li><p>ggplot2</p></li>
-<li><p>dplyr</p></li>
-<li><p>shiny</p></li>
+<li><p>ggplot2 -Create elegant data visualations using the grammar of graphics</p></li>
+<li><p>dplyr -Grammar of data manipulation</p></li>
+<li><p>shiny -Web application framework for R</p></li>
 <li><p>data.table</p></li>
-<li><p>reshape2</p></li>
-<li><p>stringr</p></li>
+<li><p>reshape2 -Reshapes data</p></li>
+<li><p>stringr -Wrappers for common string operations</p></li>
 </ol>
 </div>
 </div>

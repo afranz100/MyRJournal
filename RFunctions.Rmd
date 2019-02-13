@@ -74,15 +74,42 @@ help("mean")
  
 ### Data Creation
 1.	c()
+-This is a generic function which combines its arguments.
+```{r}
+a <- c(1,2,3,4,5)
+```
+
 2.	from:to (where from and to are replaced with numbers, e.g. 1:10)
+
 3.	seq()
+-Generate regular sequences. seq is a standard generic with a default method
+```{r}
+b <- seq(1:5)
+```
 4.	rep()
+-Replicates the values in x. It is a generic function
+
 5.	data.frame()
+The function data.frame() creates data frames, tightly coupled collections of variables which share many of the properties of matrices and of lists, used as the fundamental data structure by most of R's modeling software
+
 6.	list()
+-Functions to construct, coerce and check for both kinds of R lists.
+```{r}
+?list
+```
 7.	matrix()
+-Matrix creates a matrix from the given set of values.
+```{r}
+M <- matrix(c(1:10), nrow = 3, byrow = TRUE)
+```
 8.	factor()
+-The function factor is used to encode a vector as a factor (the terms ‘category’ and ‘enumerated type’ are also used for factors). If argument ordered is TRUE, the factor levels are assumed to be ordered. For compatibility with S there is also a function ordered.
+
 9.	rbind()
+-Take a sequence of vector, matrix or data-frame arguments and combine by columns or rows, respectively
+
 10.	cbind()
+-Take a sequence of vector, matrix or data-frame arguments and combine by columns or rows, respectively.`
 
 ### Slicing and extracting data
 ### ***Indexing vectors***
@@ -132,7 +159,10 @@ help("mean")
 
 ### Variable information
 1.	is.na(x)
-
+-NA is a logical constant of length 1 which contains a missing value indicator. NA can be coerced to any other vector type except raw. There are also constants NA_integer_, NA_real_, NA_complex_ and NA_character_ of the other atomic vector types which support missing values: all of these are reserved words in the R language.
+```{r}
+?is.na()
+```
 2.	is.null(x)
 
 3.	is.data.frame(x)
@@ -140,8 +170,10 @@ help("mean")
 4.	is.numeric(x)
 
 5.	is.character(x)
+-This function
 
 6.	length(x)
+-This function definds the size of a vector 
 ```{r}
 x <- c(1,2,3,4,5)
 
@@ -149,31 +181,59 @@ b <- length(x)
 ```
 
 7.	dim(x)
+-This function definds the dimentnions of an object
 
 8.	dimnames(x)
+-Retrieve or set the dimnames of an object.
 
 9.	nrow(x)
+-Returns the number of rows present in a matrix
 
 10.	ncol(x)
+-Returns the number of columns present in a matrix 
 
 11.	class()
+-This functions tells the class type the data belongs to
 
 12.	attributes()
+-These functions access an object's attributes. The first form below returns the object's attribute list. The replacement forms uses the list on the right-hand side of the assignment as the object's attributes (if appropriate).
 
 ### Data selection and manipulation
 1.	which.max()
-
+-Determines the location, i.e., index of the (first) minimum or maximum of a numeric (or logical) vector
+```{r}
+?which.max
+```
 2.	which.min()
-
+-Determines the location, i.e., index of the (first) minimum or maximum of a numeric (or logical) vector.
+```{r}
+?which.min
+```
 3.	which()
-
+-Give the TRUE indices of a logical object, allowing for array indices.
+```{r}
+?which
+```
 4.	sort()
-
+-Sort (or order) a vector or factor (partially) into ascending or descending order. For ordering along more than one variable
+```{r}
+?sort
+```
 5.	unique()
-
+-Returns a vector, data frame or array like x but with duplicate elements/rows removed.
+```{r}
+?unique()
+```
 6.	table()
-
+-Uses the cross-classifying factors to build a contingency table of the counts at each combination of factor levels.
+```{r}
+?table
+```
 7.	sample()
+-Takes a sample of the specified size from the elements of x using either with or without replacement.
+```{r}
+?sample
+```
 
 ### Math
 1.	max()
@@ -244,7 +304,8 @@ b <- abs(y)
 4.	colSums()
 5.	rowMeans()
 6.	colMeans()
-Advanced Data processing
+
+### Advanced Data processing
 1.	apply()
 2.	aggregate()
 Strings
@@ -273,19 +334,25 @@ Distributions
 
 6.	Explain what break() does, show you can use it
 
+
 ###Installing some packages
 Use the packages tab in R-studio to install these packages. You will need to be connected to the internet when you do this. If you are installing on your laptop, or on R-studio Cloud, then these packages will not need to installed again.
 
 1.	ggplot2
+-Create elegant data visualations using the grammar of graphics
 
 2.	dplyr
+-Grammar of data manipulation
 
 3.	shiny
+-Web application framework for R
 
 4.	data.table
 
 5.	reshape2
+-Reshapes data
 
 6.	stringr
+-Wrappers for common string operations
 
 
