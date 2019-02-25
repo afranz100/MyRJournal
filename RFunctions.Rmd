@@ -65,8 +65,12 @@ help("mean")
 ?data()
 ```
 4.	library()
+Loads and attaches packages
 5.	read.table()
+Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file.
 6.	read.csv()
+This function reads a csv file
+
 7.	scan()
 8.	print()
 9.	cat()
