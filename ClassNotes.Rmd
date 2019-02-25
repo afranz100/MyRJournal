@@ -149,4 +149,50 @@ my_dataframe <- data.frame(Names,
 -You need to make sure that you always have the same number of rows and columns 
   -the way to get around that is to include an NA section for Names and Sex as displayed above 
 
+-You can call out specific columns of a data frame by using:
+nameofdatafram$nameofcolumn
+  -when you call out the column in this way, you are also given the levels of the column which shows the levels of the variable 
+  
 
+Making a scatterplot 
+```{r}
+# Create dataframe
+a <- c(1,2,3,2,3,4,5,4)
+b <- c(4,3,4,3,2,1,2,3)
+plot_df <- data.frame(a,b)
+
+# basic scatterplot
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point()
+```
+
+ggplot2 syntax: 
+1) first load by selecting the check mark net to it or doing library(ggplot2)
+2) ggplot(yourdataframe)
+3) then you have to tell it where it put the different variables 
+  ggplot(yourdataframe, aes(x=,y=)). This sets up a canvas. Makes a plot without any of the values. You then add layers to your canvas 
+4)ggplot(yourdataframe, aes(x=,y=)) + geom_point()
+  -geoms are additionals you can add to the graph
+  
+```{r}
+# customize, add regression line
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point(size=2)+
+  #adds points, which you can change the size of by selecting size
+  geom_smooth(method=lm)+
+  #adds linear regression 
+  coord_cartesian(xlim=c(0,7),ylim=c(0,10))+
+  #controls the range, specifically setting x and y limits 
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  #changes the x and y axis labels 
+  ggtitle("I made a scatterplot")+
+  #adds a title 
+  theme_classic(base_size=12)+
+  #getting rid of the gray background, makes it a classic white background. base size is the size of the font on the graph
+  theme(plot.title = element_text(hjust = 0.5))
+#default title is left sided. this command centers the title 
+```
+
+ggplot2 makes solving annoying proglems easy
+-resizing: will ensure that you are never changing the font/graph size -> final product is precise 
