@@ -70,11 +70,14 @@ Loads and attaches packages
 Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file.
 6.	read.csv()
 This function reads a csv file
-
 7.	scan()
+Read data into a vector or list from the console or file.
 8.	print()
+Prints indivated value`
 9.	cat()
+Outputs the objects, concatenating the representations.
 10.	write.table()
+write.table prints its required argument x (after converting it to a data frame if it is not one nor a matrix) to a file or connection.
  
 ### Data Creation
 1.	c()
@@ -84,7 +87,7 @@ a <- c(1,2,3,4,5)
 ```
 
 2.	from:to (where from and to are replaced with numbers, e.g. 1:10)
-
+Generates a sequence, starting from 1 and ending at 10
 3.	seq()
 -Generate regular sequences. seq is a standard generic with a default method
 ```{r}
@@ -118,22 +121,23 @@ M <- matrix(c(1:10), nrow = 3, byrow = TRUE)
 ### Slicing and extracting data
 ### ***Indexing vectors***
 1.	x[n] nth element
-
+Calls out the nth element 
 2.	x[-n] all but nth element
-
+Calls out all but the nth element
 3.	x[1:n] first n elements
-
+Calls out first n elements
 4.	x[-(1:n)] elements from n+1 to the end
-
+Calls out elements from n+1 to the end
 5.	x[c(1,4,2)] specific elements
-
+Calls out specific elements
 6.	x[“name”] elements named “name”
-
+Calls out the name of some element
 7.	x[x>3] all elements greater than 3
-
+Calls out all elements greater than 3
 8.	x[x > 3 & x < 5] all elements between 3 and 5
-
+Calls out all elements between three and five
 9.	x[x %in% c(“a”,“and”,“the”)] all elements in given set
+Calls out all elements of a given set 
 
 ### ***Indexing lists***
 1.	x[n] list with elements n
@@ -141,41 +145,45 @@ M <- matrix(c(1:10), nrow = 3, byrow = TRUE)
 3.	x[[“name”]] element of the list named “name”
 4.	x$name id.
 
+
 ### ***Indexing matrices***
 1.	x[i,j] element at row i, column j
+Calls out element at row i and column j
 2.	x[i,] row i
+Calls out row i
 3.	x[,j] column j
+Calls out column j
 4.	x[,c(1,3)] columns 1 and 3
+Calls out columns 1 and 3 
 5.	x[“name”,] row named “name”
+Calls now the row named "name"
 
 ### ***Indexing data frames (matrix indexing plus the following)***
 1.	x[[“name”]] column named “name”
+Calls out the column named "name"
 2.	x$nameid.
 
 ### Variable conversion
 1.	as.data.frame(x)
-
+Functions to check if an object is a data frame, or coerce it if possible.`
 2.	as.numeric(x)
-
+Functions to check if an object is a numeric, or coerce it if possible.
 3.	as.logical(x)
-
+Functions to check if an object is a logical, or coerce it if possible.
 4.	as.character(x)
+Functions to check if an object is a character, or coerce it if possible.
 
 ### Variable information
 1.	is.na(x)
 -NA is a logical constant of length 1 which contains a missing value indicator. NA can be coerced to any other vector type except raw. There are also constants NA_integer_, NA_real_, NA_complex_ and NA_character_ of the other atomic vector types which support missing values: all of these are reserved words in the R language.
-```{r}
-?is.na()
-```
 2.	is.null(x)
-
+Determines of object x is a null
 3.	is.data.frame(x)
-
+Determines of object x is a data frame
 4.	is.numeric(x)
-
+Determines of object x is a numeric
 5.	is.character(x)
--This function
-
+Determines of object x is a character
 6.	length(x)
 -This function definds the size of a vector 
 ```{r}
@@ -183,22 +191,16 @@ x <- c(1,2,3,4,5)
 
 b <- length(x)
 ```
-
 7.	dim(x)
 -This function definds the dimentnions of an object
-
 8.	dimnames(x)
 -Retrieve or set the dimnames of an object.
-
 9.	nrow(x)
 -Returns the number of rows present in a matrix
-
 10.	ncol(x)
 -Returns the number of columns present in a matrix 
-
 11.	class()
 -This functions tells the class type the data belongs to
-
 12.	attributes()
 -These functions access an object's attributes. The first form below returns the object's attribute list. The replacement forms uses the list on the right-hand side of the assignment as the object's attributes (if appropriate).
 
@@ -303,26 +305,42 @@ b <- abs(y)
 
 ### Matrices
 1.	t()
+Transposes a matrix
 2.	diag()
+Extract or replace the diagonal of a matrix, or construct a diagonal matrix.
 3.	rowSums()
+Gives the sum of a row in a matrix
 4.	colSums()
+Gives the sum of a column in a matrix
 5.	rowMeans()
+Gives the mean of a row in a matrix
 6.	colMeans()
+Gives the mean of a column in a matrix
 
 ### Advanced Data processing
 1.	apply()
+Returns a vector or array or list of values obtained by applying a function to margins of an array or matrix.`
 2.	aggregate()
-Strings
+Splits the data into subsets, computes summary statistics for each, and returns the result in a convenient form.
 1.	paste()
+Concatenate vectors after converting to character.
 2.	strsplit()
+Split the elements of a character vector x into substrings according to the matches to substring split within them.
 3.	tolower()
+Translate characters in character vectors, in particular from upper to lower case or vice versa.
 4.	toupper
+Translate characters in character vectors, in particular from upper to lower case or vice versa.
+
 Plotting
 1.	hist()
+Plots a histogram
 2.	plot()
-Distributions
+Makes a plot of designated data 
+
 1.	rnorm()
+Picks numbers from a normal distribution 
 2.	runif()
+These functions provide information about the uniform distribution on the interval from min to max. dunif gives the density, punif gives the distribution function qunif gives the quantile function and runif generates random deviates.
 
 ### Programming
 1.	show that you can define a function
