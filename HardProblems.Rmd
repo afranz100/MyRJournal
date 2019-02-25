@@ -58,3 +58,68 @@ Encrypt and Decrypt the Alphabet Turn any normal english text into an encrypted 
 
 ```
 
+### Problem 6 
+Snakes and Ladders
+
+### Problem 7
+Assume that a pair of dice are rolled. Using monte carlo-simulation, compute the probabilities of rolling a 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12, respectively.
+```{r}
+X = matrix(ncol = 4,nrow = 10000)
+for(year in 1:4) {
+# for each year sample the return 10000 times
+ for(i in 1:10000){
+  X[i,year] = sample(returns,1)
+ }
+}
+
+# show first 6 rows
+head(X)
+```
+
+### Problem 8
+Monte Hall Problem
+```{r}
+rm(list=ls())
+monty<-function(strat='stay',N=1000,print_games=TRUE)
+{
+ doors<-1:3 #initialize the doors behind one of which is a good prize
+ win<-0 #to keep track of number of wins
+ 
+for(i in 1:N)
+ {
+ prize<-floor(runif(1,1,4)) #randomize which door has the good prize
+ guess<-floor(runif(1,1,4)) #guess a door at random
+ 
+## Reveal one of the doors you didn't pick which has a bum prize
+ if(prize!=guess)
+ reveal<-doors[-c(prize,guess)]
+ else
+ reveal<-sample(doors[-c(prize,guess)],1)
+ 
+ ## Stay with your initial guess or switch
+ if(strat=='switch')
+ select<-doors[-c(reveal,guess)]
+ if(strat=='stay')
+ select<-guess
+ if(strat=='random')
+ select<-sample(doors[-reveal],1)
+ 
+## Count up your wins
+ if(select==prize)
+ {
+ win<-win+1
+ outcome<-'Winner!'
+ }else
+ outcome<-'Losser!'
+ 
+if(print_games)
+ cat(paste('Guess: ',guess,
+ '\nRevealed: ',reveal,
+ '\nSelection: ',select,
+ '\nPrize door: ',prize,
+ '\n',outcome,'\n\n',sep=''))
+ }
+ cat(paste('Using the ',strat,' strategy, your win percentage was ',win/N*100,'%\n',sep='')) #Print the win percentage of your strategy
+}
+```
+
