@@ -195,4 +195,64 @@ ggplot(plot_df, aes(x=a,y=b))+
 ```
 
 ggplot2 makes solving annoying proglems easy
--resizing: will ensure that you are never changing the font/graph size -> final product is precise 
+-resizing: will ensure that you are never changing the font/graph size -> final product is precise
+
+Bar graph
+```{r}
+#Create a dataframe
+factor_one <- as.factor(c("A","B","C"))
+dv_means <- c(20,30,40)
+dv_SEs   <- c(4,3.4,4)
+plot_df <- data.frame(factor_one,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means))+
+  geom_bar(stat="identity")
+#aes: you can designate what you want to go across the x and y axis 
+#geom_bar adds the bars to the graph "canvas"
+#you always start is putting in the data to the graph and designating the axis. Then you are drawing on top the additional formatting (bars, lines points etc)
+#stat=identity -> necessary, not running any manipulation
+```
+
+Adding error bars and further customizing graphs 
+```{r}
+ggplot(plot_df, aes(x=factor_one,y=dv_means))+
+  geom_bar(stat="identity")+
+  geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                width=.2)+
+  #adds error bars. Must tell what min and max of error bars
+  coord_cartesian(ylim=c(0,100))+
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  ggtitle("I made a bar graph")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+Graph a factorial design on a bar graph 
+```{r}
+#Create a dataframe
+factor_one <- rep(as.factor(c("A","B","C")),2)
+factor_two <- rep(as.factor(c("IIA","IIB")),3)
+dv_means <- c(20,30,40,20,40,40)
+dv_SEs   <- c(4,3.4,4,3,2,4)
+plot_df <- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two,
+                    fill=factor_two))+
+  #aes getings longer. color -> boarder color, but fill -> is color of the bar itself 
+  geom_bar(stat="identity", position="dodge")
+#position="dodge" makes two smaller bars for each factor instead of the factors on top of each other 
+#if you want to change the colors of the bars, do that here
+```
