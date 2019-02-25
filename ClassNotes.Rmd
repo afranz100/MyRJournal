@@ -100,8 +100,8 @@ Making a package:
   4) Choose "subdirectory" and make sure you know where you are          storing it 
   
 Two folders "r" and "man"
-  -"r": containing "hello.R", which contains a simple function which        prints "Hello, World"
-  -"man": what you write in this section, is what will show up on the         help page when you ?funcition
+  -"r": containing "hello.R", which contains a simple function    which prints "Hello, World"
+  -"man": what you write in this section, is what will show up on the help page when you ?funcition
 
 New Script, save it to R folder 
   -Then you are able to create functions to combine which makes your    package. 
@@ -112,6 +112,41 @@ Loading packages from R
 "devtools"
 
 
+## Class 4 2/25
+Using ggplot2 to make a graph 
+  -learning how to code to create these graphs 
 
+Data Frames: a type of format 
+-work flow in R: get data from somewhere, put it into R and use it
+-there are a number of different formats to do that. Data frame is one type of format 
+  -many libraries/functions are made to be used with data frame
+-to use ggplot2 you must first put it in a data frame
+
+What is a data frame? 
+-similar to an excel spreadsheet with rows and columns 
+
+Making a data frame: 
+```{r}
+a <- data.frame()
+```
+^creates an empty data frame without anything in it 
+-helpful to have meaningful names of columns/rows
+
+-rows are generally different participants data, columns are DV or IV
+
+```{r}
+Names <- c("Peter", "Paul", "Mary", NA)
+Ages <- c(1000,1200,100,50)
+Sex <- c("M", "M", "F", NA)
+
+
+my_dataframe <- data.frame(Names,
+                           Ages,
+                           Sex)
+#data does not need to be stacked as above, but it eases in reading 
+#you are adding on new columns as you add information within the parenthesis 
+```
+-You need to make sure that you always have the same number of rows and columns 
+  -the way to get around that is to include an NA section for Names and Sex as displayed above 
 
 
