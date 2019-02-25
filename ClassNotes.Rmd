@@ -125,7 +125,7 @@ Data Frames: a type of format
 What is a data frame? 
 -similar to an excel spreadsheet with rows and columns 
 
-Making a data frame: 
+### Making a data frame: 
 ```{r}
 a <- data.frame()
 ```
@@ -154,7 +154,7 @@ nameofdatafram$nameofcolumn
   -when you call out the column in this way, you are also given the levels of the column which shows the levels of the variable 
   
 
-Making a scatterplot 
+### Making a scatterplot 
 ```{r}
 # Create dataframe
 a <- c(1,2,3,2,3,4,5,4)
@@ -197,7 +197,7 @@ ggplot(plot_df, aes(x=a,y=b))+
 ggplot2 makes solving annoying proglems easy
 -resizing: will ensure that you are never changing the font/graph size -> final product is precise
 
-Bar graph
+### Bar graph
 ```{r}
 #Create a dataframe
 factor_one <- as.factor(c("A","B","C"))
@@ -217,7 +217,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means))+
 #stat=identity -> necessary, not running any manipulation
 ```
 
-Adding error bars and further customizing graphs 
+### Adding error bars and further customizing graphs 
 ```{r}
 ggplot(plot_df, aes(x=factor_one,y=dv_means))+
   geom_bar(stat="identity")+
@@ -233,7 +233,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means))+
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-Graph a factorial design on a bar graph 
+### Graph a factorial design on a bar graph 
 ```{r}
 #Create a dataframe
 factor_one <- rep(as.factor(c("A","B","C")),2)
@@ -256,3 +256,34 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means,
 #position="dodge" makes two smaller bars for each factor instead of the factors on top of each other 
 #if you want to change the colors of the bars, do that here
 ```
+
+### 3 Factor 
+```{r}
+#Create a dataframe
+factor_one <- rep(rep(as.factor(c("A","B","C")),2),2)
+factor_two <- rep(rep(as.factor(c("IIA","IIB")),3),2)
+factor_three <- rep(as.factor(c("IIIA","IIIB")),each=6)
+dv_means <- c(20,30,40,20,40,40,
+              10,20,50,50,10,10)
+dv_SEs   <- c(4,3.4,4,3,2,4,
+              1,2,1,2,3,2)
+plot_df <- data.frame(factor_one,
+                      factor_two,
+                      factor_three,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two))+
+  geom_bar(stat="identity", position="dodge")+
+  facet_wrap(~factor_three)
+#this separates the graphs by whatever you tell it to 
+
+```
+
+
+To change the way the IV is repeated, add each=2
+  -changes it from sally bob cathy sally bob cathy to sally sally bob bob cathy cathy 
