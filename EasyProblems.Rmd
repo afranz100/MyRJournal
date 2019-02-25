@@ -15,9 +15,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
 ### Problem 1
-
 Do simple math with numbers, addition, subtraction, multiplication, division
-
 ```{r}
 
 1+1
@@ -26,10 +24,9 @@ Do simple math with numbers, addition, subtraction, multiplication, division
 10/5
 
 ```
+
 ### Problem 2
-
 Put numbers into variables, do simple math on the variables 
-
 ```{r, eval=FALSE}
 
 a <- 1
@@ -44,18 +41,88 @@ c <- 5
 
 a+b+c
 ```
+
 ### Problem 3
 Write code that will place the numbers 1 to 100 separately into a variable using for loop. Then, again using the seq function.
-
 ```{r}
+Numbers <-seq(1:100)
 
+for (i in 1:length(Numbers)){
+  print(Numbers[[i]])
+}
 
+```
 
+### Problem 4
+Find the sum of all the integer numbers from 1 to 100
+```{r}
+values <- seq(1:100)
+sum(values)
+```
+
+### Problem 5
+Write a function to find the sum of all integers between any two values.
+```{r}
+summing <- function(x){
+  a <- seq(a:b)
+  x <- sum(a)
+  return(x)
+}
+```
+
+### Problem 6
+List all of the odd numbers from 1 to 100.
+```{r}
+q <- seq(from=1, to=100, by=2)
+```
+
+### Problem 7
+List all of the prime numbers from 1 to 1000.
+```{r, eval=FALSE}
+Prime_Numbers <-(1:1000)
+a <- Prime_Numbers%%Prime_Numbers
+if (a==0)
+  a <- Prime_Numbers
+if (a/=0)
+  b <- Prime_Numbers
+print(b)
+
+```
+
+### Problem 8
+Generate 100 random numbers
+```{r}
+runif(100)
+```
+
+### Problem 9 
+Generate 100 random numbers within a specific range
+```{r}
+runif(100,0,100)
+```
+
+### Problem 10 
+Write your own functions to give descriptive statistics for a vector variable storing multiple numbers. Write functions for the following without using R intrinsics: mean, mode, median, range, standard deviation
+```{r}
+meaning <- function(a) {
+   for(i in 1:a) {
+      b<-sum(a)
+      localmean<-b/length(a)
+      print(b)
+   }
+}
+```
+
+### Problem 11
+Count the number of characters in a string variable
+```{r}
+a <- "adskfjhkadsjfh"
+strsplit(a,split="")
+b <- length(a[[1]])
 ```
 
 ### Problem 12
 Count the number of words in a string variable
-
 ```{r}
 a <- "count the number of words in this sentence"
 
@@ -79,7 +146,6 @@ length(b[[1]])
 
 ### Problem 14
 Count the number of times a specific character occurs in a string variable
-
 ```{r}
 a <- "abcabbccaaabbbbc"
 
@@ -87,9 +153,9 @@ b <- strsplit(a, split="a")
 
 length(b[[1]])
 ```
+
 ### Problem 15 
 Do a logical test to see if one word is found within the text of another string variable.
-
 ```{r}
 
 test_word <- "hello"
@@ -103,37 +169,51 @@ test_word%in%test_sentence
 
 ### Problem 16 
 Put the current computer time in milliseconds into a variable
-
 ```{r}
 print(as.numeric(Sys.time())*1000, digits=15)
 ```
 
-### ***Problem 17***
+### Problem 17
 Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time
+```{r, eval=FALSE}
+sleep_for_a_minute <- function(x) { Sys.sleep(60) }
 
-```{r}
+start_time <- Sys.time(x)
+sleep_for_a_minute(x)
+end_time <- Sys.time(x)
+
+end_time - start_time
 
 ```
 
-### ***Problem 18*** 
+### Problem 18
 Read a .txt file or .csv file into a variable
+```{r, eval=FALSE}
+x <- scan("Thisismytextfile.txt", what=character)
+xtext <- read.delim(thisismytextfile.txt)
 
-```{r}
-#x <- scan("Thisismytextfile.txt", what=character)
-#xtext <- read.delim(thisismytextfile.txt)
+DATA_DIR <- system.file("extdata/", package = "readtext")
 
-#DATA_DIR <- system.file("extdata/", package = "readtext")
-
-#x <- read.csv(file=Thisismytextfile.csv, header=FALSE)
-
+x <- read.csv(file=Thisismytextfile.csv, header=FALSE)
 
 ```
 
 ### Problem 19 
 Output the contents of a variable to a .txt file
+```{r, eval=FALSE}
+a <- write.csv(Thisismytextfile.csv)
+```
 
+### Problem 20 
+Create a variable that stores a 20x20 matrix of random numbers
 ```{r}
+a <- matrix(runif(20), ncol=20,nrow=20)
+```
 
+### Problem 21
+Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values
+```{r}
+b <-write.csv(a)
 ```
 
 
