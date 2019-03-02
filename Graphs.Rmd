@@ -1,0 +1,58 @@
+---
+title: "Graph Work"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+
+### Cao et al. (2019)
+```{r}
+# Create dataframe
+a <- c(runif(8,0,70))
+b <- c(runif(8,0,70))
+plot_df <- data.frame(a,b)
+
+# basic scatterplot
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point()+
+  geom_smooth(method=lm)+
+  coord_cartesian(xlim=c(0,70),ylim=c(0,70))+
+  xlab("Average Frequency of Nonsocial Risk")+
+  ylab("Average Frequency of Social Risk")+
+  theme_classic(base_size=12)
+  
+#Questions: how do you get rid of grey area, change the formatting of the line? Asking these questions
+```
+```
+
+
+### Jefferies & Lolla (2019)
+```{r}
+a <- c(runif(10,0,7))
+b <- c(runif(10,0,1))
+c <- ("M" "W" "M" "W" "M" "W" "M" "W")
+plot_df <- data.frame(a,b,c)
+
+# basic scatterplot
+ggplot(plot_df, aes(x=a,y=b, group=2)+
+  geom_smooth(method=lm, aes(color=1, size=1))+
+  coord_cartesian(xlim=c(0,7),ylim=c(0,1))+
+  xlab("Evaluation of Person X")+
+  ylab("P(Target=Pilot)")+
+  theme_classic(base_size=12)
+  
+```
+
+
+
+

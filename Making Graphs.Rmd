@@ -1,0 +1,218 @@
+---
+title: "Making Graphs"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+## Class 4 2/25
+Using ggplot2 to make a graph 
+  -learning how to code to create these graphs 
+
+Data Frames: a type of format 
+-work flow in R: get data from somewhere, put it into R and use it
+-there are a number of different formats to do that. Data frame is one type of format 
+  -many libraries/functions are made to be used with data frame
+-to use ggplot2 you must first put it in a data frame
+
+What is a data frame? 
+-similar to an excel spreadsheet with rows and columns 
+
+### Making a data frame: 
+```{r}
+a <- data.frame()
+```
+^creates an empty data frame without anything in it 
+-helpful to have meaningful names of columns/rows
+
+-rows are generally different participants data, columns are DV or IV
+
+```{r}
+Names <- c("Peter", "Paul", "Mary", NA)
+Ages <- c(1000,1200,100,50)
+Sex <- c("M", "M", "F", NA)
+
+
+my_dataframe <- data.frame(Names,
+                           Ages,
+                           Sex)
+#data does not need to be stacked as above, but it eases in reading 
+#you are adding on new columns as you add information within the parenthesis 
+```
+-You need to make sure that you always have the same number of rows and columns 
+  -the way to get around that is to include an NA section for Names and Sex as displayed above 
+
+-You can call out specific columns of a data frame by using:
+nameofdatafram$nameofcolumn
+  -when you call out the column in this way, you are also given the levels of the column which shows the levels of the variable 
+  
+
+### Cao et al 2019
+```{r}
+# Create dataframe
+a <- c(runif(8,0,70))
+b <- c(runif(8,0,70))
+plot_df <- data.frame(a,b)
+
+# basic scatterplot
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point()+
+  geom_smooth(method=lm)+
+  coord_cartesian(xlim=c(0,70),ylim=c(0,70))+
+  xlab("Average Frequency of Nonsocial Risk")+
+  ylab("Average Frequency of Social Risk")+
+  theme_classic(base_size=12)
+  
+#Questions: how do you get rid of grey area, change the formatting of the line? Asking these questions
+```
+
+
+```{r}
+ggplot2(plot_df, aes(x=a,y=b))+
+  geom_point(size=2)+
+  #adds points, which you can change the size of by selecting size
+  geom_smooth(method=lm)+
+  #adds linear regression 
+  coord_cartesian(xlim=c(0,7),ylim=c(0,10))+
+  #controls the range, specifically setting x and y limits 
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  #changes the x and y axis labels 
+  ggtitle("I made a scatterplot")+
+  #adds a title 
+  theme_classic(base_size=12)+
+  #getting rid of the gray background, makes it a classic white background. base size is the size of the font on the graph
+  theme(plot.title = element_text(hjust = 0.5))
+#default title is left sided. this command centers the title 
+```
+
+ggplot2 syntax: 
+1) first load by selecting the check mark net to it or doing library(ggplot2)
+2) ggplot(yourdataframe)
+3) then you have to tell it where it put the different variables 
+  ggplot(yourdataframe, aes(x=,y=)). This sets up a canvas. Makes a plot without any of the values. You then add layers to your canvas 
+4)ggplot(yourdataframe, aes(x=,y=)) + geom_point()
+  -geoms are additionals you can add to the graph
+  
+```{r}
+# customize, add regression line
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point(size=2)+
+  #adds points, which you can change the size of by selecting size
+  geom_smooth(method=lm)+
+  #adds linear regression 
+  coord_cartesian(xlim=c(0,7),ylim=c(0,10))+
+  #controls the range, specifically setting x and y limits 
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  #changes the x and y axis labels 
+  ggtitle("I made a scatterplot")+
+  #adds a title 
+  theme_classic(base_size=12)+
+  #getting rid of the gray background, makes it a classic white background. base size is the size of the font on the graph
+  theme(plot.title = element_text(hjust = 0.5))
+#default title is left sided. this command centers the title 
+```
+
+ggplot2 makes solving annoying proglems easy
+-resizing: will ensure that you are never changing the font/graph size -> final product is precise
+
+### Bar graph
+```{r}
+#Create a dataframe
+factor_one <- as.factor(c("A","B","C"))
+dv_means <- c(20,30,40)
+dv_SEs   <- c(4,3.4,4)
+plot_df <- data.frame(factor_one,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means))+
+  geom_bar(stat="identity")
+#aes: you can designate what you want to go across the x and y axis 
+#geom_bar adds the bars to the graph "canvas"
+#you always start is putting in the data to the graph and designating the axis. Then you are drawing on top the additional formatting (bars, lines points etc)
+#stat=identity -> necessary, not running any manipulation
+```
+
+### Adding error bars and further customizing graphs 
+```{r}
+ggplot(plot_df, aes(x=factor_one,y=dv_means))+
+  geom_bar(stat="identity")+
+  geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                width=.2)+
+  #adds error bars. Must tell what min and max of error bars
+  coord_cartesian(ylim=c(0,100))+
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  ggtitle("I made a bar graph")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+### Graph a factorial design on a bar graph 
+```{r}
+#Create a dataframe
+factor_one <- rep(as.factor(c("A","B","C")),2)
+factor_two <- rep(as.factor(c("IIA","IIB")),3)
+dv_means <- c(20,30,40,20,40,40)
+dv_SEs   <- c(4,3.4,4,3,2,4)
+plot_df <- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two,
+                    fill=factor_two))+
+  #aes getings longer. color -> boarder color, but fill -> is color of the bar itself 
+  geom_bar(stat="identity", position="dodge")
+#position="dodge" makes two smaller bars for each factor instead of the factors on top of each other 
+#if you want to change the colors of the bars, do that here
+```
+
+### 3 Factor 
+```{r}
+#Create a dataframe
+factor_one <- rep(rep(as.factor(c("A","B","C")),2),2)
+factor_two <- rep(rep(as.factor(c("IIA","IIB")),3),2)
+factor_three <- rep(as.factor(c("IIIA","IIIB")),each=6)
+dv_means <- c(20,30,40,20,40,40,
+              10,20,50,50,10,10)
+dv_SEs   <- c(4,3.4,4,3,2,4,
+              1,2,1,2,3,2)
+plot_df <- data.frame(factor_one,
+                      factor_two,
+                      factor_three,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two))+
+  geom_bar(stat="identity", position="dodge")+
+  facet_wrap(~factor_three)
+#this separates the graphs by whatever you tell it to 
+
+```
+
+
+To change the way the IV is repeated, add each=2
+  -changes it from sally bob cathy sally bob cathy to sally sally bob bob cathy cathy 
