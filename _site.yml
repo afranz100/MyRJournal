@@ -12,4 +12,8 @@ navbar:
       href: ClassNotes.html
     - text: "Links"
       href: Links.html
+    - text: "Hard Problems"
+      href: HardProblems.html
+    - text: "Graphs"
+      href: Graphs.html
 output_dir: "docs"

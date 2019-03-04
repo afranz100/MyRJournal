@@ -33,26 +33,63 @@ ggplot(plot_df, aes(x=a,y=b))+
   
 #Questions: how do you get rid of grey area, change the formatting of the line? Asking these questions
 ```
-```
 
+### Jeffereies (2019)
+```{r, eval=FALSE}
+Evalofperson <- c(runif(10,0,7))
+P_Target <- c(runif(10,0,1))
+Gender <- rep(c("M","W"),5)
 
-### Jefferies & Lolla (2019)
-```{r}
-a <- c(runif(10,0,7))
-b <- c(runif(10,0,1))
-c <- ("M" "W" "M" "W" "M" "W" "M" "W")
-plot_df <- data.frame(a,b,c)
+plot_df <- data.frame(Evalofperson,P_Target,Gender)
 
 # basic scatterplot
-ggplot(plot_df, aes(x=a,y=b, group=2)+
-  geom_smooth(method=lm, aes(color=1, size=1))+
-  coord_cartesian(xlim=c(0,7),ylim=c(0,1))+
-  xlab("Evaluation of Person X")+
-  ylab("P(Target=Pilot)")+
-  theme_classic(base_size=12)
-  
+ggplot(plot_df, aes(Evalofperson, P_Target, shape=Gender, colour=Gender, fill=Gender))+
+    geom_point(size=3)+
+    geom_smooth(method=lm)+
+    coord_cartesian(xlim=c(0,7),ylim=c(0,1))+
+    xlab("Evaluation of Person X")+
+    ylab("P(Target=Pilot)")+
+    theme_classic(base_size=12)+
+    facet_wrap(~factor_three)
 ```
 
 
+### Kim et al. (2019)
+```{r}
+a <- c(runif(20,-2.5,5))
+b <- c(runif(20,-20,30))
+plot_df <- data.frame(a,b)
 
+#Empathy
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point()+
+  geom_smooth(method=lm)+
+  coord_cartesian(xlim=c(-2.5,5),ylim=c(-20,30))+
+  xlab("Social N400")+
+  ylab("Empathy Quotient Test")
+
+#Reading in the Mind
+c <- c(runif(20,-2.5,5))
+d <- c(runif(20,-8,8))
+plot_df2 <- data.frame(c,d)
+
+ggplot(plot_df2, aes(x=c,y=d))+
+  geom_point()+
+  geom_smooth(method=lm)+
+  coord_cartesian(xlim=c(-2.5,5),ylim=c(-8,8))+
+  xlab("Social N400")+
+  ylab("Reading the Mind in the Eyes Test")
+
+#Autism Spectrum Quotient 
+e <- c(runif(20,-2.5,5))
+f <- c(runif(20,-10,20))
+plot_df3 <- data.frame(e,f)
+
+ggplot(plot_df3, aes(x=e,y=f))+
+  geom_point()+
+  geom_smooth(method=lm)+
+  coord_cartesian(xlim=c(-2.5,5),ylim=c(-10,20))+
+  xlab("Social N400")+
+  ylab("Autism Spectrum Quotient")
+```
 
