@@ -18,19 +18,34 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 The FizzBuzz Problem. List the numbers from 1 to 100 with the following constraints. If the number can be divided by three evenly, then print Fizz instead of the number. If the number can be divided by five evenly, then print Buzz instead of the number. Finally, if the number can be divided by three and five evenly, then print FizzBuzz instead of the number. 
 ```{r} 
 
+number <- c(1:100)
 
-x <- c()
-for(a in 1:100) {
-   if (a%%3==0) {
-     x(a) <- Fizz
-   }
+for (i in 1:100){
+  if (number%%3==0) {
+  number[i] <- "Fizz"
+  }
+  if (number%%5==0){
+    number[i] <- "Buzz"
+  }
+  if (number%%4 == 0 & a%%8 ==0) {
+    number[i] <- "FizzBuzz"
+  }
+  else {
+    number[i] <- a
+  }
 }
 
-if (a(z)%%3==0)
+
+#for(a in 1:100) {
+   #if (a%%3==0) {
+     x(a) <- Fizz
+ 
+
+#if (a(z)%%3==0)
   a<-Fizz
-if (a(z)%%5==0)
+#if (a(z)%%5==0)
   a<-Buzz
-if (a(z)%%3==0)&(a(z)%%5==0)
+#if (a(z)%%3==0)&(a(z)%%5==0)
   a<-FizzBuzz
 ```
 
