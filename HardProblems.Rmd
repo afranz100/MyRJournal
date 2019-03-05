@@ -49,6 +49,12 @@ for (i in 1:100){
   a<-FizzBuzz
 ```
 
+```{r}
+a <- c(1:100)
+
+a[(a%%3==0)] <- "Fizz"
+```
+
 ### Problem 2
 Frequency Counts Take text as input, and be able to produce a table that shows the counts for each character in the text. This problem is related to the earlier easy problem asking you to count the number of times that a single letter appears in a text. The slightly harder problem is the more general version: count the frequencies of all unique characters in a text.
 ```{r}
