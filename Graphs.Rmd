@@ -14,6 +14,10 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
+```{r}
+library(ggplot2)
+```
+
 
 ### Cao et al. (2019)
 ```{r}
@@ -36,6 +40,7 @@ ggplot(plot_df, aes(x=a,y=b))+
 
 ### Jeffereies (2019)
 ```{r, eval=FALSE}
+
 Evalofperson <- c(runif(10,0,7))
 P_Target <- c(runif(10,0,1))
 Gender <- rep(c("M","W"),5)
@@ -43,6 +48,7 @@ Gender <- rep(c("M","W"),5)
 plot_df <- data.frame(Evalofperson,P_Target,Gender)
 
 # basic scatterplot
+library(ggplot2)
 ggplot(plot_df, aes(Evalofperson, P_Target, shape=Gender, colour=Gender, fill=Gender))+
     geom_point(size=3)+
     geom_smooth(method=lm)+
