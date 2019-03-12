@@ -112,7 +112,7 @@ Loading packages from R
 "devtools"
 
 
-## Class 4 2/25
+## Class 4 2/25: Making a graph
 Using ggplot2 to make a graph 
   -learning how to code to create these graphs 
 
@@ -124,6 +124,11 @@ Data Frames: a type of format
 
 What is a data frame? 
 -similar to an excel spreadsheet with rows and columns 
+
+```{r}
+library(ggplot2)
+```
+
 
 ### Making a data frame: 
 ```{r}
@@ -284,6 +289,70 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means,
 
 ```
 
-
 To change the way the IV is repeated, add each=2
   -changes it from sally bob cathy sally bob cathy to sally sally bob bob cathy cathy 
+  
+
+### Class 5 3/11: Data Wrangling
+
+-Loading data into R, and formatting data allows us to visualize and manupulate it 
+
+```{r}
+library(dplyr)
+```
+
+dplyr comes with a starwars data frame! 
+
+```{r}
+starwars
+```
+
+-Calling out parts of a data frame
+  Getting specific columns
+    +data_frame_name$name_of_column
+  Getting specific rows/without names 
+    +data_frame_name[1,] -> print row 1, show all columns 
+    +data_frame_name[1,1] -> print row 1, show columns 1
+  Getting specific information 
+    +data_frame_name[data_frame_name$name_of_column == "LukeSkywalker"]
+
+-To find out how many rows or columns a data frame has
+  + dim(data_frame_name) -> returns the number of rows and colums
+
+-Adding a column to a data frame, must be sure you are keeping the number of rows/columns consistent 
+  +cbind 
+
+-Adding a row to a data frame
+  +rbind
+  
+-Difference between factor and character vector and how to transition between the two 
+  +as.factor
+  
+#### dplyr
+
+```{r}
+library(dplyr)
+```
+
+-dplyr uses a pipe opperator using the following syntax:
+  -%>% -> used between functions to filter and manipulate data
+  -filter() helps us filter certain information. We choose certain columns and then keep the information that fits the specified criterion     +filter(height > 120)
+  -you can add as many filters as you want 
+  -you can use logical comparisions in the filter 
+  
+-you can also do data manupulation and analysis using dplyr 
+  +group_by() -> 
+  +summarise()
+  
+#### Loading data into R
+
+-using read.csv file: 
+  +it is very important to know where the data you are trying to load into R
+  +do this by first saving data into your R package workplace 
+  +then you will be able to load your data more easily without tracing where on the computer it is located 
+
+
+  
+  
+  
+  

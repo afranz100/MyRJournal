@@ -391,6 +391,12 @@ div.tocify {
 <li>
   <a href="Links.html">Links</a>
 </li>
+<li>
+  <a href="HardProblems.html">Hard Problems</a>
+</li>
+<li>
+  <a href="Graphs.html">Graphs</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -408,63 +414,145 @@ div.tocify {
 </div>
 
 
-<div id="class-1-12819" class="section level2">
-<h2>Class 1 (1/28/19)</h2>
-<p>Version control: time capsule of every change you’ve made to you files -copy of every time you’ve saved a file</p>
-<p>Making a change and pushing it to web: -when you change in Studio, if you look at gitbub desktop, you can see what has been changed -make sure you have saved your work in r studio -go to getup and select things you want to save</p>
-<p>Option+command+I -&gt; tell r markdown that you are now writing R code</p>
-<p>Control+enter -&gt; put cursor on the first line of your code and it will run</p>
-<p>Equals sign in r means something else! use &lt;- instead to assign variables -You can put numbers or text into variables</p>
-<p>You can see the variables that you have assigned in your “environments” table on the top right corner of R-studio</p>
-<p>Clear variables: session -&gt; clear workspace</p>
-<p>You can turn on/off R code in your website: set an option “eval” and the {r} place {r, eval=FALSE} and the code will not be evaluated. You are then able to build your website even though your code is not running correctly.</p>
-<p>Stack exchange: forum to answer questions about R</p>
+<div id="problem-1" class="section level3">
+<h3>Problem 1</h3>
+<p>The FizzBuzz Problem. List the numbers from 1 to 100 with the following constraints. If the number can be divided by three evenly, then print Fizz instead of the number. If the number can be divided by five evenly, then print Buzz instead of the number. Finally, if the number can be divided by three and five evenly, then print FizzBuzz instead of the number.</p>
+<pre class="r"><code>number &lt;- c(1:100)
+
+for (i in 1:100){
+  if (number%%3==0) {
+  number[i] &lt;- &quot;Fizz&quot;
+  }
+  if (number%%5==0){
+    number[i] &lt;- &quot;Buzz&quot;
+  }
+  if (number%%4 == 0 &amp; a%%8 ==0) {
+    number[i] &lt;- &quot;FizzBuzz&quot;
+  }
+  else {
+    number[i] &lt;- a
+  }
+}
+
+
+#for(a in 1:100) {
+   #if (a%%3==0) {
+     x(a) &lt;- Fizz
+ 
+
+#if (a(z)%%3==0)
+  a&lt;-Fizz
+#if (a(z)%%5==0)
+  a&lt;-Buzz
+#if (a(z)%%3==0)&amp;(a(z)%%5==0)
+  a&lt;-FizzBuzz</code></pre>
+<pre class="r"><code>a &lt;- c(1:100)
+
+a[(a%%3==0)] &lt;- &quot;Fizz&quot;</code></pre>
 </div>
-<div id="class-3-21119" class="section level2">
-<h2>Class 3 (2/11/19)</h2>
-<div id="creating-an-r-package" class="section level3">
-<h3><strong><em>Creating an R Package</em></strong></h3>
-<p>What are packages? A series of R functions -ex: making beautiful graphs</p>
-<p>CRAN: cloud based repository, that is shared across the world, society of R packages</p>
-<p>TidyVerse: data analysis package</p>
-<p>Loading a package -check the package button -or library(packagename)</p>
-<p>Functions: creates a series of steps in one simple function -takes an input, does something, returns output</p>
-<div id="format-of-writing-a-function" class="section level4">
-<h4><strong><em>Format of writing a function:</em></strong></h4>
-<pre class="r"><code>name_of_function &lt;- function(input){
-  #body of code 
-  return(output)
+<div id="problem-2" class="section level3">
+<h3>Problem 2</h3>
+<p>Frequency Counts Take text as input, and be able to produce a table that shows the counts for each character in the text. This problem is related to the earlier easy problem asking you to count the number of times that a single letter appears in a text. The slightly harder problem is the more general version: count the frequencies of all unique characters in a text.</p>
+<pre class="r"><code>a&lt;-&quot;this is my sentence&quot;
+table(unlist(strsplit(a,split=&quot;&quot;)))</code></pre>
+<pre><code>## 
+##   c e h i m n s t y 
+## 3 1 3 1 2 1 2 3 2 1</code></pre>
+</div>
+<div id="problem-3" class="section level3">
+<h3>Problem 3</h3>
+<p>Test the Random Number Generator Test the random number generator for a flat distribution. Generate a few million random numbers between 0 and 100. Count the number of 0s, 1s, 2s, 3s, etc. all the way up to 100. Look at the counts for each of the numbers and determine if they are relatively equal. For example, you could plot the counts in Excel to make a histogram. If all of the bars are close to being flat, then each number had an equal chance of being selected, and the random number generator is working without bias.</p>
+<pre class="r"><code>d&lt;-runif(1,100,1)
+x&lt;- count.fields(d)
+hist(x)</code></pre>
+</div>
+<div id="problem-4" class="section level3">
+<h3>Problem 4</h3>
+<p>Create a multiplication table Generate a matrix for a multiplication table. For example, the labels for the columns could be the numbers 1 to 10, and the labels for the rows could be the numbers 1 to 10. The contents of each of the cells in the matrix should be correct answer for multiplying the column value by the row value.</p>
+<pre class="r"><code>num = as.integer(readline(prompt = &quot;Enter a number: &quot;))</code></pre>
+<pre><code>## Enter a number:</code></pre>
+<pre class="r"><code># use for loop to iterate 10 times
+for(i in 1:10) {
+print(paste(num,&#39;x&#39;, i, &#39;=&#39;, num*i))
 }</code></pre>
+<pre><code>## [1] &quot;NA x 1 = NA&quot;
+## [1] &quot;NA x 2 = NA&quot;
+## [1] &quot;NA x 3 = NA&quot;
+## [1] &quot;NA x 4 = NA&quot;
+## [1] &quot;NA x 5 = NA&quot;
+## [1] &quot;NA x 6 = NA&quot;
+## [1] &quot;NA x 7 = NA&quot;
+## [1] &quot;NA x 8 = NA&quot;
+## [1] &quot;NA x 9 = NA&quot;
+## [1] &quot;NA x 10 = NA&quot;</code></pre>
 </div>
-<div id="example-function" class="section level4">
-<h4><strong><em>Example function:</em></strong></h4>
-<pre class="r"><code>add_one &lt;-function(x){
-  return(x+1)
+<div id="problem-5" class="section level3">
+<h3>Problem 5</h3>
+<p>Encrypt and Decrypt the Alphabet Turn any normal english text into an encrypted version of the text, and be able to turn any decrypted text back into normal english text. A simple encryption would be to scramble the alphabet such that each letter corresponds to a new randomly chosen (but unique) letter.</p>
+</div>
+<div id="problem-6" class="section level3">
+<h3>Problem 6</h3>
+<p>Snakes and Ladders</p>
+</div>
+<div id="problem-7" class="section level3">
+<h3>Problem 7</h3>
+<p>Assume that a pair of dice are rolled. Using monte carlo-simulation, compute the probabilities of rolling a 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12, respectively.</p>
+<pre class="r"><code>X = matrix(ncol = 4,nrow = 10000)
+for(year in 1:4) {
+# for each year sample the return 10000 times
+ for(i in 1:10000){
+  X[i,year] = sample(returns,1)
+ }
 }
 
-add_one(6)</code></pre>
-<pre><code>## [1] 7</code></pre>
-<p>Breaking down the steps of your function using comments can ease in writing and understand where you went wrong.</p>
-<p>You can also write a function that does not take any inputs</p>
+# show first 6 rows
+head(X)</code></pre>
 </div>
-<div id="rolling-a-dice-example-no-input" class="section level4">
-<h4><strong><em>Rolling a Dice example (no input)</em></strong></h4>
-<pre class="r"><code>sample(1:6,1) #using an instinsic to do that same thing a function will do </code></pre>
-<pre><code>## [1] 4</code></pre>
-<pre class="r"><code>roll_dice &lt;- function(){
-  return(sample(1:6,1))
-}
-
-#This function does the same thing as the instrinsic </code></pre>
-<p>You can type in simply the name of a function and it will show you the steps. This is when you don’t use the parenthesis.</p>
-<p>Return: important because that is what will come out of the function. You can tell it to return anything you like</p>
-<p>Print vs return: -Print: prints whatever to the console, but does not return the output of a function -Return: allows the value to exist in memory which can also be placed into another variable</p>
-<p>Making a package: 1) make a new project 2) new directory 3) R package 4) Choose “subdirectory” and make sure you know where you are storing it</p>
-<p>Two folders “r” and “man” -“r”: containing “hello.R”, which contains a simple function which prints “Hello, World” -“man”: what you write in this section, is what will show up on the help page when you ?funcition</p>
-<p>New Script, save it to R folder -Then you are able to create functions to combine which makes your package. -Every function should be a separate .R folder</p>
-<p>Loading packages from R “devtools”</p>
-</div>
-</div>
+<div id="problem-8" class="section level3">
+<h3>Problem 8</h3>
+<p>Monte Hall Problem</p>
+<pre class="r"><code>rm(list=ls())
+monty&lt;-function(strat=&#39;stay&#39;,N=1000,print_games=TRUE)
+{
+ doors&lt;-1:3 #initialize the doors behind one of which is a good prize
+ win&lt;-0 #to keep track of number of wins
+ 
+for(i in 1:N)
+ {
+ prize&lt;-floor(runif(1,1,4)) #randomize which door has the good prize
+ guess&lt;-floor(runif(1,1,4)) #guess a door at random
+ 
+## Reveal one of the doors you didn&#39;t pick which has a bum prize
+ if(prize!=guess)
+ reveal&lt;-doors[-c(prize,guess)]
+ else
+ reveal&lt;-sample(doors[-c(prize,guess)],1)
+ 
+ ## Stay with your initial guess or switch
+ if(strat==&#39;switch&#39;)
+ select&lt;-doors[-c(reveal,guess)]
+ if(strat==&#39;stay&#39;)
+ select&lt;-guess
+ if(strat==&#39;random&#39;)
+ select&lt;-sample(doors[-reveal],1)
+ 
+## Count up your wins
+ if(select==prize)
+ {
+ win&lt;-win+1
+ outcome&lt;-&#39;Winner!&#39;
+ }else
+ outcome&lt;-&#39;Losser!&#39;
+ 
+if(print_games)
+ cat(paste(&#39;Guess: &#39;,guess,
+ &#39;\nRevealed: &#39;,reveal,
+ &#39;\nSelection: &#39;,select,
+ &#39;\nPrize door: &#39;,prize,
+ &#39;\n&#39;,outcome,&#39;\n\n&#39;,sep=&#39;&#39;))
+ }
+ cat(paste(&#39;Using the &#39;,strat,&#39; strategy, your win percentage was &#39;,win/N*100,&#39;%\n&#39;,sep=&#39;&#39;)) #Print the win percentage of your strategy
+}</code></pre>
 </div>
 
 

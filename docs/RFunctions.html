@@ -391,6 +391,12 @@ div.tocify {
 <li>
   <a href="Links.html">Links</a>
 </li>
+<li>
+  <a href="HardProblems.html">Hard Problems</a>
+</li>
+<li>
+  <a href="Graphs.html">Graphs</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -452,13 +458,13 @@ div.tocify {
 </ol>
 <pre class="r"><code>?data()</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>library()</li>
-<li>read.table()</li>
-<li>read.csv()</li>
-<li>scan()</li>
-<li>print()</li>
-<li>cat()</li>
-<li>write.table()</li>
+<li>library() Loads and attaches packages</li>
+<li>read.table() Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file.</li>
+<li>read.csv() This function reads a csv file</li>
+<li>scan() Read data into a vector or list from the console or file.</li>
+<li>print() Prints indivated value`</li>
+<li>cat() Outputs the objects, concatenating the representations.</li>
+<li>write.table() write.table prints its required argument x (after converting it to a data frame if it is not one nor a matrix) to a file or connection.</li>
 </ol>
 </div>
 <div id="data-creation" class="section level3">
@@ -468,8 +474,8 @@ div.tocify {
 </ol>
 <pre class="r"><code>a &lt;- c(1,2,3,4,5)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>from:to (where from and to are replaced with numbers, e.g. 1:10)</p></li>
-<li><p>seq() -Generate regular sequences. seq is a standard generic with a default method</p></li>
+<li>from:to (where from and to are replaced with numbers, e.g. 1:10) Generates a sequence, starting from 1 and ending at 10</li>
+<li>seq() -Generate regular sequences. seq is a standard generic with a default method</li>
 </ol>
 <pre class="r"><code>b &lt;- seq(1:5)</code></pre>
 <ol start="4" style="list-style-type: decimal">
@@ -494,15 +500,15 @@ div.tocify {
 <div id="indexing-vectors" class="section level3">
 <h3><strong><em>Indexing vectors</em></strong></h3>
 <ol style="list-style-type: decimal">
-<li><p>x[n] nth element</p></li>
-<li><p>x[-n] all but nth element</p></li>
-<li><p>x[1:n] first n elements</p></li>
-<li><p>x[-(1:n)] elements from n+1 to the end</p></li>
-<li><p>x[c(1,4,2)] specific elements</p></li>
-<li><p>x[“name”] elements named “name”</p></li>
-<li><p>x[x&gt;3] all elements greater than 3</p></li>
-<li><p>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5</p></li>
-<li><p>x[x %in% c(“a”,“and”,“the”)] all elements in given set</p></li>
+<li>x[n] nth element Calls out the nth element</li>
+<li>x[-n] all but nth element Calls out all but the nth element</li>
+<li>x[1:n] first n elements Calls out first n elements</li>
+<li>x[-(1:n)] elements from n+1 to the end Calls out elements from n+1 to the end</li>
+<li>x[c(1,4,2)] specific elements Calls out specific elements</li>
+<li>x[“name”] elements named “name” Calls out the name of some element</li>
+<li>x[x&gt;3] all elements greater than 3 Calls out all elements greater than 3</li>
+<li>x[x &gt; 3 &amp; x &lt; 5] all elements between 3 and 5 Calls out all elements between three and five</li>
+<li>x[x %in% c(“a”,“and”,“the”)] all elements in given set Calls out all elements of a given set</li>
 </ol>
 </div>
 <div id="indexing-lists" class="section level3">
@@ -517,52 +523,49 @@ div.tocify {
 <div id="indexing-matrices" class="section level3">
 <h3><strong><em>Indexing matrices</em></strong></h3>
 <ol style="list-style-type: decimal">
-<li>x[i,j] element at row i, column j</li>
-<li>x[i,] row i</li>
-<li>x[,j] column j</li>
-<li>x[,c(1,3)] columns 1 and 3</li>
-<li>x[“name”,] row named “name”</li>
+<li>x[i,j] element at row i, column j Calls out element at row i and column j</li>
+<li>x[i,] row i Calls out row i</li>
+<li>x[,j] column j Calls out column j</li>
+<li>x[,c(1,3)] columns 1 and 3 Calls out columns 1 and 3</li>
+<li>x[“name”,] row named “name” Calls now the row named “name”</li>
 </ol>
 </div>
 <div id="indexing-data-frames-matrix-indexing-plus-the-following" class="section level3">
 <h3><strong><em>Indexing data frames (matrix indexing plus the following)</em></strong></h3>
 <ol style="list-style-type: decimal">
-<li>x[[“name”]] column named “name”</li>
+<li>x[[“name”]] column named “name” Calls out the column named “name”</li>
 <li>x$nameid.</li>
 </ol>
 </div>
 <div id="variable-conversion" class="section level3">
 <h3>Variable conversion</h3>
 <ol style="list-style-type: decimal">
-<li><p>as.data.frame(x)</p></li>
-<li><p>as.numeric(x)</p></li>
-<li><p>as.logical(x)</p></li>
-<li><p>as.character(x)</p></li>
+<li>as.data.frame(x) Functions to check if an object is a data frame, or coerce it if possible.`</li>
+<li>as.numeric(x) Functions to check if an object is a numeric, or coerce it if possible.</li>
+<li>as.logical(x) Functions to check if an object is a logical, or coerce it if possible.</li>
+<li>as.character(x) Functions to check if an object is a character, or coerce it if possible.</li>
 </ol>
 </div>
 <div id="variable-information" class="section level3">
 <h3>Variable information</h3>
 <ol style="list-style-type: decimal">
 <li>is.na(x) -NA is a logical constant of length 1 which contains a missing value indicator. NA can be coerced to any other vector type except raw. There are also constants NA_integer_, NA_real_, NA_complex_ and NA_character_ of the other atomic vector types which support missing values: all of these are reserved words in the R language.</li>
-</ol>
-<pre class="r"><code>?is.na()</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li><p>is.null(x)</p></li>
-<li><p>is.data.frame(x)</p></li>
-<li><p>is.numeric(x)</p></li>
-<li><p>is.character(x) -This function</p></li>
-<li><p>length(x) -This function definds the size of a vector</p></li>
+<li>is.null(x) Determines of object x is a null</li>
+<li>is.data.frame(x) Determines of object x is a data frame</li>
+<li>is.numeric(x) Determines of object x is a numeric</li>
+<li>is.character(x) Determines of object x is a character</li>
+<li>length(x) -This function definds the size of a vector</li>
 </ol>
 <pre class="r"><code>x &lt;- c(1,2,3,4,5)
 
 b &lt;- length(x)</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li><p>dim(x) -This function definds the dimentnions of an object</p></li>
-<li><p>dimnames(x) -Retrieve or set the dimnames of an object.</p></li>
-<li><p>nrow(x) -Returns the number of rows present in a matrix</p></li>
-<li><p>ncol(x) -Returns the number of columns present in a matrix</p></li>
-<li><p>class() -This functions tells the class type the data belongs to</p></li>
-<li><p>attributes() -These functions access an object’s attributes. The first form below returns the object’s attribute list. The replacement forms uses the list on the right-hand side of the assignment as the object’s attributes (if appropriate).</p></li>
+<li>dim(x) -This function definds the dimentnions of an object</li>
+<li>dimnames(x) -Retrieve or set the dimnames of an object.</li>
+<li>nrow(x) -Returns the number of rows present in a matrix</li>
+<li>ncol(x) -Returns the number of columns present in a matrix</li>
+<li>class() -This functions tells the class type the data belongs to</li>
+<li>attributes() -These functions access an object’s attributes. The first form below returns the object’s attribute list. The replacement forms uses the list on the right-hand side of the assignment as the object’s attributes (if appropriate).</li>
 </ol>
 </div>
 <div id="data-selection-and-manipulation" class="section level3">
@@ -650,27 +653,28 @@ b &lt;- abs(y)</code></pre>
 <div id="matrices" class="section level3">
 <h3>Matrices</h3>
 <ol style="list-style-type: decimal">
-<li>t()</li>
-<li>diag()</li>
-<li>rowSums()</li>
-<li>colSums()</li>
-<li>rowMeans()</li>
-<li>colMeans()</li>
+<li>t() Transposes a matrix</li>
+<li>diag() Extract or replace the diagonal of a matrix, or construct a diagonal matrix.</li>
+<li>rowSums() Gives the sum of a row in a matrix</li>
+<li>colSums() Gives the sum of a column in a matrix</li>
+<li>rowMeans() Gives the mean of a row in a matrix</li>
+<li>colMeans() Gives the mean of a column in a matrix</li>
 </ol>
 </div>
 <div id="advanced-data-processing" class="section level3">
 <h3>Advanced Data processing</h3>
 <ol style="list-style-type: decimal">
-<li>apply()</li>
-<li>aggregate() Strings</li>
-<li>paste()</li>
-<li>strsplit()</li>
-<li>tolower()</li>
-<li>toupper Plotting</li>
-<li>hist()</li>
-<li>plot() Distributions</li>
-<li>rnorm()</li>
-<li>runif()</li>
+<li>apply() Returns a vector or array or list of values obtained by applying a function to margins of an array or matrix.`</li>
+<li>aggregate() Splits the data into subsets, computes summary statistics for each, and returns the result in a convenient form.</li>
+<li>paste() Concatenate vectors after converting to character.</li>
+<li>strsplit() Split the elements of a character vector x into substrings according to the matches to substring split within them.</li>
+<li>tolower() Translate characters in character vectors, in particular from upper to lower case or vice versa.</li>
+<li>toupper Translate characters in character vectors, in particular from upper to lower case or vice versa.</li>
+</ol>
+<p>Plotting 1. hist() Plots a histogram 2. plot() Makes a plot of designated data</p>
+<ol style="list-style-type: decimal">
+<li>rnorm() Picks numbers from a normal distribution</li>
+<li>runif() These functions provide information about the uniform distribution on the interval from min to max. dunif gives the density, punif gives the distribution function qunif gives the quantile function and runif generates random deviates.</li>
 </ol>
 </div>
 <div id="programming" class="section level3">

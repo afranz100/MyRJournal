@@ -391,6 +391,12 @@ div.tocify {
 <li>
   <a href="Links.html">Links</a>
 </li>
+<li>
+  <a href="HardProblems.html">Hard Problems</a>
+</li>
+<li>
+  <a href="Graphs.html">Graphs</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -463,6 +469,187 @@ add_one(6)</code></pre>
 <p>Two folders “r” and “man” -“r”: containing “hello.R”, which contains a simple function which prints “Hello, World” -“man”: what you write in this section, is what will show up on the help page when you ?funcition</p>
 <p>New Script, save it to R folder -Then you are able to create functions to combine which makes your package. -Every function should be a separate .R folder</p>
 <p>Loading packages from R “devtools”</p>
+</div>
+</div>
+</div>
+<div id="class-4-225-making-a-graph" class="section level2">
+<h2>Class 4 2/25: Making a graph</h2>
+<p>Using ggplot2 to make a graph -learning how to code to create these graphs</p>
+<p>Data Frames: a type of format -work flow in R: get data from somewhere, put it into R and use it -there are a number of different formats to do that. Data frame is one type of format -many libraries/functions are made to be used with data frame -to use ggplot2 you must first put it in a data frame</p>
+<p>What is a data frame? -similar to an excel spreadsheet with rows and columns</p>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<div id="making-a-data-frame" class="section level3">
+<h3>Making a data frame:</h3>
+<pre class="r"><code>a &lt;- data.frame()</code></pre>
+<p>^creates an empty data frame without anything in it -helpful to have meaningful names of columns/rows</p>
+<p>-rows are generally different participants data, columns are DV or IV</p>
+<pre class="r"><code>Names &lt;- c(&quot;Peter&quot;, &quot;Paul&quot;, &quot;Mary&quot;, NA)
+Ages &lt;- c(1000,1200,100,50)
+Sex &lt;- c(&quot;M&quot;, &quot;M&quot;, &quot;F&quot;, NA)
+
+
+my_dataframe &lt;- data.frame(Names,
+                           Ages,
+                           Sex)
+#data does not need to be stacked as above, but it eases in reading 
+#you are adding on new columns as you add information within the parenthesis </code></pre>
+<p>-You need to make sure that you always have the same number of rows and columns -the way to get around that is to include an NA section for Names and Sex as displayed above</p>
+<p>-You can call out specific columns of a data frame by using: nameofdatafram$nameofcolumn -when you call out the column in this way, you are also given the levels of the column which shows the levels of the variable</p>
+</div>
+<div id="making-a-scatterplot" class="section level3">
+<h3>Making a scatterplot</h3>
+<pre class="r"><code># Create dataframe
+a &lt;- c(1,2,3,2,3,4,5,4)
+b &lt;- c(4,3,4,3,2,1,2,3)
+plot_df &lt;- data.frame(a,b)
+
+# basic scatterplot
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point()</code></pre>
+<p><img src="ClassNotes_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>ggplot2 syntax: 1) first load by selecting the check mark net to it or doing library(ggplot2) 2) ggplot(yourdataframe) 3) then you have to tell it where it put the different variables ggplot(yourdataframe, aes(x=,y=)). This sets up a canvas. Makes a plot without any of the values. You then add layers to your canvas 4)ggplot(yourdataframe, aes(x=,y=)) + geom_point() -geoms are additionals you can add to the graph</p>
+<pre class="r"><code># customize, add regression line
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point(size=2)+
+  #adds points, which you can change the size of by selecting size
+  geom_smooth(method=lm)+
+  #adds linear regression 
+  coord_cartesian(xlim=c(0,7),ylim=c(0,10))+
+  #controls the range, specifically setting x and y limits 
+  xlab(&quot;x-axis label&quot;)+
+  ylab(&quot;y-axis label&quot;)+
+  #changes the x and y axis labels 
+  ggtitle(&quot;I made a scatterplot&quot;)+
+  #adds a title 
+  theme_classic(base_size=12)+
+  #getting rid of the gray background, makes it a classic white background. base size is the size of the font on the graph
+  theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<p><img src="ClassNotes_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>#default title is left sided. this command centers the title </code></pre>
+<p>ggplot2 makes solving annoying proglems easy -resizing: will ensure that you are never changing the font/graph size -&gt; final product is precise</p>
+</div>
+<div id="bar-graph" class="section level3">
+<h3>Bar graph</h3>
+<pre class="r"><code>#Create a dataframe
+factor_one &lt;- as.factor(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;))
+dv_means &lt;- c(20,30,40)
+dv_SEs   &lt;- c(4,3.4,4)
+plot_df &lt;- data.frame(factor_one,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means))+
+  geom_bar(stat=&quot;identity&quot;)</code></pre>
+<p><img src="ClassNotes_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>#aes: you can designate what you want to go across the x and y axis 
+#geom_bar adds the bars to the graph &quot;canvas&quot;
+#you always start is putting in the data to the graph and designating the axis. Then you are drawing on top the additional formatting (bars, lines points etc)
+#stat=identity -&gt; necessary, not running any manipulation</code></pre>
+</div>
+<div id="adding-error-bars-and-further-customizing-graphs" class="section level3">
+<h3>Adding error bars and further customizing graphs</h3>
+<pre class="r"><code>ggplot(plot_df, aes(x=factor_one,y=dv_means))+
+  geom_bar(stat=&quot;identity&quot;)+
+  geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                width=.2)+
+  #adds error bars. Must tell what min and max of error bars
+  coord_cartesian(ylim=c(0,100))+
+  xlab(&quot;x-axis label&quot;)+
+  ylab(&quot;y-axis label&quot;)+
+  ggtitle(&quot;I made a bar graph&quot;)+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<p><img src="ClassNotes_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="graph-a-factorial-design-on-a-bar-graph" class="section level3">
+<h3>Graph a factorial design on a bar graph</h3>
+<pre class="r"><code>#Create a dataframe
+factor_one &lt;- rep(as.factor(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;)),2)
+factor_two &lt;- rep(as.factor(c(&quot;IIA&quot;,&quot;IIB&quot;)),3)
+dv_means &lt;- c(20,30,40,20,40,40)
+dv_SEs   &lt;- c(4,3.4,4,3,2,4)
+plot_df &lt;- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two,
+                    fill=factor_two))+
+  #aes getings longer. color -&gt; boarder color, but fill -&gt; is color of the bar itself 
+  geom_bar(stat=&quot;identity&quot;, position=&quot;dodge&quot;)</code></pre>
+<p><img src="ClassNotes_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>#position=&quot;dodge&quot; makes two smaller bars for each factor instead of the factors on top of each other 
+#if you want to change the colors of the bars, do that here</code></pre>
+</div>
+<div id="factor" class="section level3">
+<h3>3 Factor</h3>
+<pre class="r"><code>#Create a dataframe
+factor_one &lt;- rep(rep(as.factor(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;)),2),2)
+factor_two &lt;- rep(rep(as.factor(c(&quot;IIA&quot;,&quot;IIB&quot;)),3),2)
+factor_three &lt;- rep(as.factor(c(&quot;IIIA&quot;,&quot;IIIB&quot;)),each=6)
+dv_means &lt;- c(20,30,40,20,40,40,
+              10,20,50,50,10,10)
+dv_SEs   &lt;- c(4,3.4,4,3,2,4,
+              1,2,1,2,3,2)
+plot_df &lt;- data.frame(factor_one,
+                      factor_two,
+                      factor_three,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two))+
+  geom_bar(stat=&quot;identity&quot;, position=&quot;dodge&quot;)+
+  facet_wrap(~factor_three)</code></pre>
+<p><img src="ClassNotes_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code>#this separates the graphs by whatever you tell it to </code></pre>
+<p>To change the way the IV is repeated, add each=2 -changes it from sally bob cathy sally bob cathy to sally sally bob bob cathy cathy</p>
+</div>
+<div id="class-5-311-data-wrangling" class="section level3">
+<h3>Class 5 3/11: Data Wrangling</h3>
+<p>-Loading data into R, and formatting data allows us to visualize and manupulate it</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<p>dplyr comes with a starwars data frame!</p>
+<pre class="r"><code>starwars</code></pre>
+<pre><code>## # A tibble: 87 x 13
+##    name  height  mass hair_color skin_color eye_color birth_year gender
+##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+##  1 Luke…    172    77 blond      fair       blue            19   male  
+##  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   &lt;NA&gt;  
+##  3 R2-D2     96    32 &lt;NA&gt;       white, bl… red             33   &lt;NA&gt;  
+##  4 Dart…    202   136 none       white      yellow          41.9 male  
+##  5 Leia…    150    49 brown      light      brown           19   female
+##  6 Owen…    178   120 brown, gr… light      blue            52   male  
+##  7 Beru…    165    75 brown      light      blue            47   female
+##  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   &lt;NA&gt;  
+##  9 Bigg…    183    84 black      light      brown           24   male  
+## 10 Obi-…    182    77 auburn, w… fair       blue-gray       57   male  
+## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;,
+## #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>-Calling out parts of a data frame Getting specific columns +data_frame_name<span class="math inline">\(name_of_column  Getting specific rows/without names  +data_frame_name[1,] -&gt; print row 1, show all columns  +data_frame_name[1,1] -&gt; print row 1, show columns 1  Getting specific information  +data_frame_name[data_frame_name\)</span>name_of_column == “LukeSkywalker”]</p>
+<p>-To find out how many rows or columns a data frame has + dim(data_frame_name) -&gt; returns the number of rows and colums</p>
+<p>-Adding a column to a data frame, must be sure you are keeping the number of rows/columns consistent +cbind</p>
+<p>-Adding a row to a data frame +rbind</p>
+<p>-Difference between factor and character vector and how to transition between the two +as.factor</p>
+<div id="dplyr" class="section level4">
+<h4>dplyr</h4>
+<pre class="r"><code>library(dplyr)</code></pre>
+<p>-dplyr uses a pipe opperator using the following syntax: -%&gt;% -&gt; used between functions to filter and manipulate data -filter() helps us filter certain information. We choose certain columns and then keep the information that fits the specified criterion +filter(height &gt; 120) -you can add as many filters as you want -you can use logical comparisions in the filter</p>
+<p>-you can also do data manupulation and analysis using dplyr +group_by() -&gt; +summarise()</p>
+</div>
+<div id="loading-data-into-r" class="section level4">
+<h4>Loading data into R</h4>
+<p>-using read.csv file: +it is very important to know where the data you are trying to load into R +do this by first saving data into your R package workplace +then you will be able to load your data more easily without tracing where on the computer it is located</p>
 </div>
 </div>
 </div>
