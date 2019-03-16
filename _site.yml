@@ -16,4 +16,6 @@ navbar:
       href: HardProblems.html
     - text: "Graphs"
       href: Graphs.html
+    - text: "Data Wrangling"
+      href: DataWrangle.html
 output_dir: "docs"
