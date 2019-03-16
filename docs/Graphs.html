@@ -451,6 +451,29 @@ ggplot(plot_df, aes(Evalofperson, P_Target, shape=Gender, colour=Gender, fill=Ge
     ylab(&quot;P(Target=Pilot)&quot;)+
     theme_classic(base_size=12)+
     facet_wrap(~factor_three)</code></pre>
+<pre class="r"><code>library(ggplot2)
+evaluation&lt;-c((seq(1,7,.1)+runif(61,-2,2)),
+              (seq(1,7,.1)+runif(61,-2,2)))
+pTarget &lt;-c((seq(.92,.85,length.out=61)+runif(61,-.1,.1)),
+            (seq(.8,.4,length.out=61)+runif(61,-.5,.5)))
+Gender &lt;- rep(c(&quot;Man Communicated with ATC&quot;,
+            &quot;Woman Communicated with ATC&quot;), each=61)
+plot_df&lt;-data.frame(evaluation,pTarget,Gender)
+ggplot(plot_df, aes(x=evaluation,y=pTarget,
+                    group=Gender,
+                    color=Gender))+
+  geom_smooth(method=&quot;lm&quot;)+
+  theme_classic()+
+  scale_y_continuous(breaks=seq(0,1,.1),labels = scales::percent)+
+  scale_x_continuous(breaks=seq(1,7,1))+
+  coord_cartesian(ylim=c(0,1))+
+  xlab(&quot;Evaluation of Person X&quot;)+
+  ylab(&quot;P(Target = Pilot)&quot;)+
+  theme(legend.position=c(0.45,0.2),
+        legend.title=element_blank(),
+        legend.key.size = unit(.5, &quot;cm&quot;))+
+  theme(legend.key = element_rect(colour = &#39;white&#39;, fill = &#39;white&#39;, size = 1, linetype=&#39;solid&#39;))</code></pre>
+<p><img src="Graphs_files/figure-html/unnamed-chunk-4-1.png" width="672" /> ```</p>
 </div>
 <div id="kim-et-al.-2019" class="section level3">
 <h3>Kim et al. (2019)</h3>
@@ -465,7 +488,7 @@ ggplot(plot_df, aes(x=a,y=b))+
   coord_cartesian(xlim=c(-2.5,5),ylim=c(-20,30))+
   xlab(&quot;Social N400&quot;)+
   ylab(&quot;Empathy Quotient Test&quot;)</code></pre>
-<p><img src="Graphs_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="Graphs_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>#Reading in the Mind
 c &lt;- c(runif(20,-2.5,5))
 d &lt;- c(runif(20,-8,8))
@@ -477,7 +500,7 @@ ggplot(plot_df2, aes(x=c,y=d))+
   coord_cartesian(xlim=c(-2.5,5),ylim=c(-8,8))+
   xlab(&quot;Social N400&quot;)+
   ylab(&quot;Reading the Mind in the Eyes Test&quot;)</code></pre>
-<p><img src="Graphs_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="Graphs_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
 <pre class="r"><code>#Autism Spectrum Quotient 
 e &lt;- c(runif(20,-2.5,5))
 f &lt;- c(runif(20,-10,20))
@@ -489,7 +512,32 @@ ggplot(plot_df3, aes(x=e,y=f))+
   coord_cartesian(xlim=c(-2.5,5),ylim=c(-10,20))+
   xlab(&quot;Social N400&quot;)+
   ylab(&quot;Autism Spectrum Quotient&quot;)</code></pre>
-<p><img src="Graphs_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
+<p><img src="Graphs_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+</div>
+<div id="jouravlev-et-al-2019" class="section level3">
+<h3>Jouravlev et al (2019)</h3>
+<pre class="r"><code>factor_one &lt;- rep(as.factor(c(&quot;No Transient&quot;,&quot;Transient&quot;)),2)
+factor_two &lt;- rep(as.factor(c(&quot;Outside&quot;,&quot;Inside&quot;)),2)
+factor_three &lt;- rep(as.factor(c(&quot;Visual Group&quot;,&quot;Auditory Group&quot;)),each=4)
+dv_means &lt;- c(305,302,290,275)
+dv_SEs   &lt;- c(4,3.4,4,3)
+plot_df &lt;- data.frame(factor_one,
+                      factor_two,
+                      factor_three,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two))+
+  geom_bar(stat=&quot;identity&quot;, position=&quot;dodge&quot;)+
+  facet_wrap(~factor_three)+
+  theme_classic(base_size=12)+
+  xlab(&quot;Condition&quot;)+
+  ylab(&quot;Mean Mediant RT (ms)&quot;)</code></pre>
+<p><img src="Graphs_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 
 
