@@ -400,6 +400,9 @@ div.tocify {
 <li>
   <a href="DataWrangle.html">Data Wrangling</a>
 </li>
+<li>
+  <a href="Statistics.html">Statistics</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -653,6 +656,82 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means,
 <div id="loading-data-into-r" class="section level4">
 <h4>Loading data into R</h4>
 <p>-using read.csv file: +it is very important to know where the data you are trying to load into R +do this by first saving data into your R package workplace +then you will be able to load your data more easily without tracing where on the computer it is located</p>
+</div>
+</div>
+<div id="class-6-318-statistical-tests" class="section level3">
+<h3>Class 6 3/18: Statistical Tests</h3>
+<p>-Midterm:due in full April 8th -Make a new github repository -Find a psych paper with open data, and rerun analysis</p>
+<div id="t-tests" class="section level4">
+<h4>T Tests</h4>
+<pre class="r"><code>#One sample t-test 
+
+x &lt;- c(1,2,2,3,4,4,1,2,3,2,1) 
+
+t.test(x, mu=2)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  x
+## t = 0.81954, df = 10, p-value = 0.4316
+## alternative hypothesis: true mean is not equal to 2
+## 95 percent confidence interval:
+##  1.531243 3.014212
+## sample estimates:
+## mean of x 
+##  2.272727</code></pre>
+<pre class="r"><code>#you can set the mu equal to anything, but it will assume it is 0 if you do not specify 
+
+#Paired sample t-test
+y &lt;- c(3,5,4,6,2,1,7,8,4,3,2)
+t.test(x,y, paired=TRUE, alternative=&quot;two.sided&quot;)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  x and y
+## t = -2.1642, df = 10, p-value = 0.05571
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -3.69006396  0.05370033
+## sample estimates:
+## mean of the differences 
+##               -1.818182</code></pre>
+<pre class="r"><code>#you can speficfy that the directionality but setting alternative. include &quot;greater&quot; or &quot;less&quot; if you want to have a directionality 
+
+#Independent Sample t-test 
+mytest &lt;- t.test(x,y, var.equal=TRUE)
+
+#You can store the information as a variable and then recall it, as well as specific information (t-value, p-value, etc)
+mytest$statistic</code></pre>
+<pre><code>##        t 
+## -2.43975</code></pre>
+</div>
+<div id="between-subjects-one-factor-anova" class="section level4">
+<h4>Between Subjects One Factor ANOVA</h4>
+<pre class="r"><code>#data needs to be in long format
+#this assumes that there is no effect!!!! all DVs come from the same distribution 
+Factor1 &lt;- rep(c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;),each=5)
+DV &lt;-rnorm(n=15,mean=0,sd=1)
+all_data &lt;- data.frame(DV,Factor1)
+ANOVADATA &lt;- aov(DV~Factor1, all_data)
+#aov(formula, data frame)
+  #Formula -&gt; dependent variable ~ indepndent variable (factor)
+
+#to get is summarized in an ANOVA table use summary()
+
+
+summary(ANOVADATA)</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
+## Factor1      2  3.101  1.5504   2.864 0.0962 .
+## Residuals   12  6.495  0.5413                 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="between-subjects-2-factor" class="section level4">
+<h4>Between-subjects 2 factor</h4>
+<pre class="r"><code>#formula -&gt; (DV~Factor1*Factor2, data frame)</code></pre>
+</div>
+<div id="repeated-measures-1-factor" class="section level4">
+<h4>Repeated-measures 1 Factor</h4>
 </div>
 </div>
 </div>

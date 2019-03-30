@@ -354,5 +354,75 @@ library(dplyr)
 
   
   
+### Class 6 3/18: Statistical Tests 
+-Midterm:due in full April 8th 
+-Make a new github repository 
+-Find a psych paper with open data, and rerun analysis 
+
+#### T Tests 
+```{r}
+#One sample t-test 
+
+x <- c(1,2,2,3,4,4,1,2,3,2,1) 
+
+t.test(x, mu=2)
+
+#you can set the mu equal to anything, but it will assume it is 0 if you do not specify 
+
+#Paired sample t-test
+y <- c(3,5,4,6,2,1,7,8,4,3,2)
+t.test(x,y, paired=TRUE, alternative="two.sided")
+#you can speficfy that the directionality but setting alternative. include "greater" or "less" if you want to have a directionality 
+
+#Independent Sample t-test 
+mytest <- t.test(x,y, var.equal=TRUE)
+
+#You can store the information as a variable and then recall it, as well as specific information (t-value, p-value, etc)
+mytest$statistic
+
+```
+
+#### Between Subjects One Factor ANOVA 
+```{r}
+
+#data needs to be in long format
+#this assumes that there is no effect!!!! all DVs come from the same distribution 
+Factor1 <- rep(c("a","b","c"),each=5)
+DV <-rnorm(n=15,mean=0,sd=1)
+all_data <- data.frame(DV,Factor1)
+ANOVADATA <- aov(DV~Factor1, all_data)
+#aov(formula, data frame)
+  #Formula -> dependent variable ~ indepndent variable (factor)
+
+#to get is summarized in an ANOVA table use summary()
+
+
+summary(ANOVADATA)
+
+
+```
+
+#### Between-subjects 2 factor 
+```{r}
+#formula -> (DV~Factor1*Factor2, data frame)
+```
+
+#### Repeated-measures 1 Factor 
+```{r}
+
+```
+
+#### Making sampling distributions 
+```{r}
+hist(rnorm(n=10, mean=0, sd=1))
+
+
+```
+
+### Class 7 3/25: using papaja 
+-must be used in a different folder from your r markdown website!!!
+-when starting new r markdown for papaja, selecting the papaja format 
+-if you can open a pdf file -> you have successfully downloaded latex
+
   
   

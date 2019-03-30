@@ -18,4 +18,6 @@ navbar:
       href: Graphs.html
     - text: "Data Wrangling"
       href: DataWrangle.html
+    - text: "Statistics"
+      href: Statistics.html
 output_dir: "docs"
