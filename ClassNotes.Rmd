@@ -436,5 +436,8 @@ hist(rnorm(n=10, mean=0, sd=1))
 -when you are running a code, but it takes a long time 
 -effciently represent info in memory 
 -coding numebrs as different objects can change how big they are 
-  -0s 
-
+  -storing values as different objects (num vs character vs integer)
+-making your code take less time and figuring out how to determine that 
+-preallocation: 
+  -create an empty matrix ahead of time that is just filled in 
+-rbind, cbind, and (dplyr) mutate take a long time bc R is making a copy, changing it and then replacing the original 
