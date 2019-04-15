@@ -426,3 +426,15 @@ hist(rnorm(n=10, mean=0, sd=1))
 
   
   
+### Class 8 4/1: using papaja and power analysis 
+-power: probability of finding an effect it is actually there 
+  -under the null every p-value happens with equal probability 
+-you can use power analysis using packages or by using simulation 
+  -pwr: package similar to g-power. does not work for all designs!
+
+### Class 10 4/15: optmization of code in R 
+-when you are running a code, but it takes a long time 
+-effciently represent info in memory 
+-coding numebrs as different objects can change how big they are 
+  -0s 
+
