@@ -338,23 +338,23 @@ library(ggplot2)
 
 
 # get the file names
-file_names &lt;- list.files(path=&quot;FlankerData&quot;)
+names &lt;- list.files(path=&quot;FlankerData&quot;)
 
 # create headers for each column
-the_headers &lt;- c(&quot;stimulus&quot;,&quot;congruency&quot;,&quot;proportion&quot;,
+headers &lt;- c(&quot;stimulus&quot;,&quot;congruency&quot;,&quot;proportion&quot;,
                  &quot;block&quot;,&quot;condition&quot;,&quot;dualtask&quot;,&quot;unknown&quot;,
                  &quot;stimulus_onset&quot;,&quot;response_time&quot;,&quot;response&quot;,&quot;subject&quot;)
 # Load data
 # create empty dataframe
-all_data&lt;-data.frame()
+alldata&lt;-data.frame()
 
 # loop to add each file to the dataframe
-for(i in file_names){
-  one_subject &lt;- fread(paste(&quot;FlankerData/&quot;,i, sep=&quot;&quot;))
-  names(one_subject) &lt;- the_headers
-  one_subject$subject &lt;- rep(i,dim(one_subject)[1])
-  one_subject &lt;- cbind(one_subject, trial= 1:dim(one_subject)[1])
-  all_data &lt;- rbind(all_data,one_subject)
+for(i in names){
+  onesubject &lt;- fread(paste(&quot;FlankerData/&quot;,i, sep=&quot;&quot;))
+  names(onesubject) &lt;- headers
+  onesubject$subject &lt;- rep(i,dim(onesubject)[1])
+  onesubject &lt;- cbind(onesubject, trial= 1:dim(onesubject)[1])
+  alldata &lt;- rbind(alldata,onesubject)
 }</code></pre>
 </div>
 <div id="pre-processing" class="section level2">
@@ -362,18 +362,18 @@ for(i in file_names){
 <div id="get-accuracy-for-each-trial" class="section level3">
 <h3>get accuracy for each trial</h3>
 <p>A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)</p>
-<pre class="r"><code>center_letter &lt;- unlist(lapply(strsplit(all_data$stimulus,&quot;&quot;),
+<pre class="r"><code>centerletter &lt;- unlist(lapply(strsplit(alldata$stimulus,&quot;&quot;),
                            FUN=function(x)unlist(x)[2]))
 
-centerletter &lt;- unlist(strsplit(all_data$stimulus,&quot;&quot;))
+centerletter &lt;- unlist(strsplit(alldata$stimulus,&quot;&quot;))
 everyothernumber &lt;- seq(1,12672, 2)
 
 for (i in length(centerletter)) {
-centerletter1 &lt;- i[-everyothernumber]
+center_letter1 &lt;- i[-everyothernumber]
 
 
-all_data &lt;- cbind(all_data,center_letter)
-all_data &lt;- all_data %&gt;%
+alldata &lt;- cbind(all_data,center_letter)
+alldata &lt;- alldata %&gt;%
               mutate(response = tolower(response),
                      center_letter = tolower(center_letter),
                      accuracy = response==center_letter)
@@ -384,8 +384,8 @@ all_data &lt;- all_data %&gt;%
 <h3>Get Reaction time on each trial</h3>
 <p>The stimulus_onset column gives a computer timestamp in milliseconds indicating when the stimulus was presented. The response_time column is a timestamp in milliseconds for the response. The difference between the two (response_time - stimulus_onset) is the reaction time in milliseconds. Add a column that calculates the reaction time on each trial.</p>
 <p>**<a href="tip:**" class="uri">tip:**</a> notice that the numbers in response_time and stimulus_onset have the class integer64. Unfortunately, ggplot does not play nice with integers in this format. you will need to make sure your RT column is in the class integer or numeric.</p>
-<pre class="r"><code>all_data &lt;- all_data %&gt;%
-              mutate(RT = as.integer(response_time - stimulus_onset))
+<pre class="r"><code>alldata &lt;- alldata %&gt;%
+              mutate(RT = as.integer(responsetime - stimulusonset))
 
 #all_data &lt;- as.integer(all_data$response_time-all_data$rstimulus_onset)</code></pre>
 </div>
@@ -395,7 +395,7 @@ all_data &lt;- all_data %&gt;%
 <p>Check how many trials each subject completed in the congruent and incongruent conditions, the mean accuracy for each subject in each congruency condition, and the mean RT for each subject in each congruency condition.</p>
 <pre class="r"><code>#Finding the numbers of congruent/incongruent trials 
 
-check &lt;- all_data$congruency 
+check &lt;- alldata$congruency 
 
 numbersofI &lt;- 0
 numbersofC &lt;- 0
@@ -411,7 +411,7 @@ for (i in check) {
 <div id="exclusion" class="section level3">
 <h3>Exclusion</h3>
 <p>It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms</p>
-<pre class="r"><code>tooslow &lt;- all_data %&gt;%
+<pre class="r"><code>tooslow &lt;- alldata %&gt;%
               filter(RT &lt; 2000)</code></pre>
 </div>
 </div>
@@ -422,14 +422,32 @@ for (i in check) {
 <ol style="list-style-type: decimal">
 <li>Get the individual subject mean reaction times for <strong>correct</strong> congruent and incongruent trials.</li>
 </ol>
-<pre class="r"><code>subject_meanRTs &lt;- restricted %&gt;%
+<pre class="r"><code>meanRTs &lt;- restricted %&gt;%
                     filter(accuracy == TRUE) %&gt;%
                     group_by(subject,congruency) %&gt;%
                     summarise(mean_RT = mean(RT))</code></pre>
 <p>```</p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.</p></li>
-<li><p>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</p></li>
+<li>Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.</li>
+</ol>
+<pre class="r"><code>congruencymeans &lt;- meanRTs %&gt;%
+                      group_by(congruency) %&gt;%
+                      summarise(meanRT = mean(mean_RT),
+                                SEM = sd(mean_RT)/sqrt(length(mean_RT)))
+knitr::kable(congruencymeans)
+ggplot(congruencymeans, aes(x=congruency,y=meanRT,
+                             fill=congruency))+
+  geom_bar(stat=&quot;identity&quot;)+
+  theme_classic(base_size=12)+
+  ylab(&quot;Mean Reaction Time (ms)&quot;)+
+  geom_errorbar(aes(ymin=meanRT-SEM,
+                    ymax=meanRT+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color=&quot;black&quot;)+
+  coord_cartesian(ylim=c(700,1000))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</li>
 </ol>
 <p>**<a href="tip:**" class="uri">tip:**</a> Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.</p>
 </div>

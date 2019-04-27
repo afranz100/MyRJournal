@@ -18,30 +18,30 @@ The data is contained in this .zip file: [FlankerData.zip](https://crumplab.gith
 
 The code chunk below assumes that you have placed the folder FlankerData into your R project folder. 
 
-```{r}
+```{r, eval=FALSE}
 library(data.table)
 library(dplyr)
 library(ggplot2)
 
 
 # get the file names
-file_names <- list.files(path="FlankerData")
+names <- list.files(path="FlankerData")
 
 # create headers for each column
-the_headers <- c("stimulus","congruency","proportion",
+headers <- c("stimulus","congruency","proportion",
                  "block","condition","dualtask","unknown",
                  "stimulus_onset","response_time","response","subject")
 # Load data
 # create empty dataframe
-all_data<-data.frame()
+alldata<-data.frame()
 
 # loop to add each file to the dataframe
-for(i in file_names){
-  one_subject <- fread(paste("FlankerData/",i, sep=""))
-  names(one_subject) <- the_headers
-  one_subject$subject <- rep(i,dim(one_subject)[1])
-  one_subject <- cbind(one_subject, trial= 1:dim(one_subject)[1])
-  all_data <- rbind(all_data,one_subject)
+for(i in names){
+  onesubject <- fread(paste("FlankerData/",i, sep=""))
+  names(onesubject) <- headers
+  onesubject$subject <- rep(i,dim(onesubject)[1])
+  onesubject <- cbind(onesubject, trial= 1:dim(onesubject)[1])
+  alldata <- rbind(alldata,onesubject)
 }
 
 ```
@@ -54,18 +54,18 @@ A correct response occurs when the letter in the response column is the same as 
 
 ```{r, eval=FALSE}
 
-center_letter <- unlist(lapply(strsplit(all_data$stimulus,""),
+centerletter <- unlist(lapply(strsplit(alldata$stimulus,""),
                            FUN=function(x)unlist(x)[2]))
 
-centerletter <- unlist(strsplit(all_data$stimulus,""))
+centerletter <- unlist(strsplit(alldata$stimulus,""))
 everyothernumber <- seq(1,12672, 2)
 
 for (i in length(centerletter)) {
-centerletter1 <- i[-everyothernumber]
+center_letter1 <- i[-everyothernumber]
 
 
-all_data <- cbind(all_data,center_letter)
-all_data <- all_data %>%
+alldata <- cbind(all_data,center_letter)
+alldata <- alldata %>%
               mutate(response = tolower(response),
                      center_letter = tolower(center_letter),
                      accuracy = response==center_letter)
@@ -81,8 +81,8 @@ The stimulus_onset column gives a computer timestamp in milliseconds indicating 
 
 ```{r, eval=FALSE}
 
-all_data <- all_data %>%
-              mutate(RT = as.integer(response_time - stimulus_onset))
+alldata <- alldata %>%
+              mutate(RT = as.integer(responsetime - stimulusonset))
 
 #all_data <- as.integer(all_data$response_time-all_data$rstimulus_onset)
 
@@ -97,7 +97,7 @@ Check how many trials each subject completed in the congruent and incongruent co
 ```{r, eval=FALSE}
 #Finding the numbers of congruent/incongruent trials 
 
-check <- all_data$congruency 
+check <- alldata$congruency 
 
 numbersofI <- 0
 numbersofC <- 0
@@ -122,7 +122,7 @@ for (i in check) {
 It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms
 
 ```{r, eval=FALSE}
-tooslow <- all_data %>%
+tooslow <- alldata %>%
               filter(RT < 2000)
 ```
 
@@ -133,7 +133,7 @@ tooslow <- all_data %>%
 1. Get the individual subject mean reaction times for **correct** congruent and incongruent trials.
 
 ```{r, eval=FALSE}
-subject_meanRTs <- restricted %>%
+meanRTs <- restricted %>%
                     filter(accuracy == TRUE) %>%
                     group_by(subject,congruency) %>%
                     summarise(mean_RT = mean(RT))
@@ -142,8 +142,23 @@ subject_meanRTs <- restricted %>%
 
 2. Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.
 
-```{r}
-
+```{r, eval=FALSE}
+congruencymeans <- meanRTs %>%
+                      group_by(congruency) %>%
+                      summarise(meanRT = mean(mean_RT),
+                                SEM = sd(mean_RT)/sqrt(length(mean_RT)))
+knitr::kable(congruencymeans)
+ggplot(congruencymeans, aes(x=congruency,y=meanRT,
+                             fill=congruency))+
+  geom_bar(stat="identity")+
+  theme_classic(base_size=12)+
+  ylab("Mean Reaction Time (ms)")+
+  geom_errorbar(aes(ymin=meanRT-SEM,
+                    ymax=meanRT+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")+
+  coord_cartesian(ylim=c(700,1000))
   
   
 ```
