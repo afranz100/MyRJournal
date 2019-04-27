@@ -1,7 +1,5 @@
 ---
 title: "StatisticsProblems"
-author: "Ana-Louise"
-date: "03/23/2019"
 output: 
   html_document:
     toc: true
@@ -98,7 +96,7 @@ B <- c(3,4,5,6)
 C <- c(5,6,7,8)
 
 
-all_data <- data.frame(A,B,C)
+alldata <- data.frame(A,B,C)
 
 ```
 
