@@ -279,7 +279,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3,h4",
+      selectors: "h1,h2",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -439,11 +439,11 @@ div.tocify {
 #One tailed: positive 
 directionalnull &lt;- sort(nulldistribution)
 directionalnull[9500]</code></pre>
-<pre><code>## [1] 0.726158</code></pre>
+<pre><code>## [1] 0.7327507</code></pre>
 <pre class="r"><code>#Two tailed: difference
 directionalnull &lt;- sort(abs(nulldistribution))
 directionalnull[9500]</code></pre>
-<pre><code>## [1] 0.8736473</code></pre>
+<pre><code>## [1] 0.8781151</code></pre>
 <p>```</p>
 </div>
 <div id="t-distribution" class="section level2">
@@ -463,7 +463,7 @@ for(i in sample){
 }
   
 simulatedT-(1-pt(sample,9))</code></pre>
-<pre><code>## [1] -0.007035650 -0.002218198  0.002223588  0.001369086</code></pre>
+<pre><code>## [1]  0.0011643501  0.0026818019 -0.0020764119 -0.0001309138</code></pre>
 </div>
 <div id="correlation" class="section level2">
 <h2>Correlation</h2>
@@ -476,11 +476,11 @@ simulatedT-(1-pt(sample,9))</code></pre>
 <pre class="r"><code>correlationdist &lt;- replicate(10000,cor(rnorm(10,0,1),rnorm(10,0,1)))
 dist &lt;- sort(abs(correlationdist))
 dist[9500]</code></pre>
-<pre><code>## [1] 0.6297335</code></pre>
+<pre><code>## [1] 0.6325826</code></pre>
 <pre class="r"><code>correlationdist &lt;- replicate(10000,cor(rnorm(100,0,1),rnorm(100,0,1)))
 dist &lt;- sort(abs(correlationdist))
 dist[9500]</code></pre>
-<pre><code>## [1] 0.1994731</code></pre>
+<pre><code>## [1] 0.1952475</code></pre>
 </div>
 <div id="f-values" class="section level2">
 <h2>F-values</h2>
@@ -513,7 +513,7 @@ return(my_F)
 sim_fs &lt;- replicate(1000,sim_F())
 sort_fs&lt;-sort(sim_fs)
 sort_fs[950]</code></pre>
-<pre><code>## [1] 3.722599</code></pre>
+<pre><code>## [1] 4.032231</code></pre>
 <pre class="r"><code>qf(.05,2,9, lower.tail=FALSE)</code></pre>
 <pre><code>## [1] 4.256495</code></pre>
 </div>

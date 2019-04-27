@@ -1,5 +1,17 @@
+---
+title: "Data Wrangle"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 2
+    #code_folding: hide
+---
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
 ## Flanker task
@@ -11,12 +23,6 @@ For example, the stimulus could be "HHH", and the correct response would be H. T
 The data for this assignment come from a flanker task where participants responded to many flanker stimuli over several trials. 
 
 ## Load the data and libraries you will use
-
-I will help you with some sample code that compiles all of the text files in a single long format data frame.
-
-The data is contained in this .zip file: [FlankerData.zip](https://crumplab.github.io/psyc7709/Presentations/FlankerData.zip)
-
-The code chunk below assumes that you have placed the folder FlankerData into your R project folder. 
 
 ```{r, eval=FALSE}
 library(data.table)
@@ -76,8 +82,6 @@ alldata <- alldata %>%
 ### Get Reaction time on each trial
 
 The stimulus_onset column gives a computer timestamp in milliseconds indicating when the stimulus was presented. The response_time column is a timestamp in milliseconds for the response. The difference between the two (response_time  - stimulus_onset) is the reaction time in milliseconds. Add a column that calculates the reaction time on each trial.
-
-**tip:** notice that the numbers in response_time and stimulus_onset have the class integer64. Unfortunately, ggplot does not play nice with integers in this format. you will need to make sure your RT column is in the class integer or numeric.
 
 ```{r, eval=FALSE}
 

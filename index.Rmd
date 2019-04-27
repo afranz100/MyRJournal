@@ -19,7 +19,7 @@ output: html_document
 
 # **Ana-Louise's R Journal**
 
-I have just started and am testing to see if my changes are working!
+This is a collection of work I am doing in my R-class!
 
 
 </div>
