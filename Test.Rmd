@@ -52,3 +52,29 @@ library(knitr)
 knitr::include_graphics("xarimages/puppy.jpg")
 ```
 
+---
+#Using Columns 
+.pull-left[
+texint on the left
+
+]
+
+.pull-right [
+on the right side 
+]
+
+---
+
+# Incrementing displays
+
+showing this first 
+
+--
+
+showing this second 
+
+--
+
+showing this third 
+
+---
