@@ -441,3 +441,16 @@ hist(rnorm(n=10, mean=0, sd=1))
 -preallocation: 
   -create an empty matrix ahead of time that is just filled in 
 -rbind, cbind, and (dplyr) mutate take a long time bc R is making a copy, changing it and then replacing the original 
+
+### Class 11 4/29: powerpoint presentations on R 
+-xaringan: is a package that allows you to make powerpoint presentations 
+-making slides: 
+    --- makes a new slide 
+-changing the themes of your slide: you can use hashtags to make headers as you have been in R markdown 
+  -class changes the formatting of the slide 
+  -inverse -> colors are reversed 
+  -middle -> title goes into the middle of the page 
+  -center -> puts words in the center of the page 
+-bullets: "- word"
+
+

@@ -1,0 +1,54 @@
+---
+title: "My New Presentation"
+subtitle: "A Subtitle"
+author: "Ana-Louise"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+class: inverse, center, middle
+#Opening slide
+
+---
+
+
+# Title of my first slide
+## first thing: 
+- ha ha ha 
+## second thing: 
+- lol lol lol 
+
+
+---
+# Adding R Codeblocks
+
+```{r}
+a <- rnorm(10,0,1)
+print(a)
+```
+
+---
+
+# Graphs 
+```{r, echo=FALSE, fig.align='center', fig.height=7}
+hist(a)
+```
+---
+
+#Adding external image 
+```{r}
+library(knitr)
+knitr::include_graphics("xarimages/puppy.jpg")
+```
+
