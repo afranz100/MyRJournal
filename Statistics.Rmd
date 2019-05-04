@@ -15,8 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 
 
 ## Null distribution of mean differences
-
-If you take two random samples from the same distribution they can be different because of random sampling. This question asks you to construct a null-distribution using simulation.
+-Showing how even in random sampling from the same distributions, you sometimes get a result that the samples did NOT come from the same sample. 
 
 1. Assume your samples come from a normal distribution with mean =0, sd =1. (use `rnorm`)
 2. Assume sample size for each sample is n =10 (e.g., `rnorm(10,0,1)`)
@@ -35,12 +34,8 @@ directionalnull[9500]
 directionalnull <- sort(abs(nulldistribution))
 directionalnull[9500]
 ```
-```
-
 
 ## t-distribution
-
-Show that the properties of a simulated t-distribution are the same as the properties of the analytic t-distribution. Assume df = 9.
 
 1. For example, what are the probabilities of t(9) >= .5, 1, 1.5, 2, and 2.5? These p-values can be obtained using the `qt()` function. 
 
@@ -65,8 +60,6 @@ simulatedT-(1-pt(sample,9))
 
 
 ## Correlation
-
-Sample A and Sample B both have 10 observations randomly sampled from the same normal distribution with mean = 0, and sd =1. The expected correlation between A and B is 0, because both samples are taken randomly. 
 
 1. Generate the distribution of correlations (Pearson r values) that could be obtained by chance (simulate 10,000 times)
 
@@ -101,8 +94,6 @@ alldata <- data.frame(A,B,C)
 ```
 
 ## F simulation
-
-Assume that there are three groups of different subjects. Each group has four subjects. The subject means for all subjects are sampled randomly from  normal distribution with mean =0 and sd =1.
 
 1. Run a simulation 10,000 times to construct the simulated F-distribution. On each run, sample new numbers into the three groups, then compute F and save it.
 

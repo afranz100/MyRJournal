@@ -422,7 +422,7 @@ div.tocify {
 
 <div id="null-distribution-of-mean-differences" class="section level2">
 <h2>Null distribution of mean differences</h2>
-<p>If you take two random samples from the same distribution they can be different because of random sampling. This question asks you to construct a null-distribution using simulation.</p>
+<p>-Showing how even in random sampling from the same distributions, you sometimes get a result that the samples did NOT come from the same sample.</p>
 <ol style="list-style-type: decimal">
 <li>Assume your samples come from a normal distribution with mean =0, sd =1. (use <code>rnorm</code>)</li>
 <li>Assume sample size for each sample is n =10 (e.g., <code>rnorm(10,0,1)</code>)</li>
@@ -435,16 +435,14 @@ div.tocify {
 #One tailed: positive 
 directionalnull &lt;- sort(nulldistribution)
 directionalnull[9500]</code></pre>
-<pre><code>## [1] 0.7330931</code></pre>
+<pre><code>## [1] 0.7381502</code></pre>
 <pre class="r"><code>#Two tailed: difference
 directionalnull &lt;- sort(abs(nulldistribution))
 directionalnull[9500]</code></pre>
-<pre><code>## [1] 0.8811548</code></pre>
-<p>```</p>
+<pre><code>## [1] 0.8659965</code></pre>
 </div>
 <div id="t-distribution" class="section level2">
 <h2>t-distribution</h2>
-<p>Show that the properties of a simulated t-distribution are the same as the properties of the analytic t-distribution. Assume df = 9.</p>
 <ol style="list-style-type: decimal">
 <li><p>For example, what are the probabilities of t(9) &gt;= .5, 1, 1.5, 2, and 2.5? These p-values can be obtained using the <code>qt()</code> function.</p></li>
 <li><p>Create a simulated t-distribution for the null hypothesis with df=9. Here, the model situation involves taking samples of size n=10 from a normal distribution. The t-value is computed for each sample (sample mean - 0)/SEM. The process is repeated 10,000 times, and each t-value is saved. The resulting 10,000 t-values are the simulated t-distribution.</p></li>
@@ -459,11 +457,10 @@ for(i in sample){
 }
   
 simulatedT-(1-pt(sample,9))</code></pre>
-<pre><code>## [1] -0.003035650 -0.001518198 -0.002476412  0.001369086</code></pre>
+<pre><code>## [1] 0.002964350 0.003981802 0.001523588 0.001869086</code></pre>
 </div>
 <div id="correlation" class="section level2">
 <h2>Correlation</h2>
-<p>Sample A and Sample B both have 10 observations randomly sampled from the same normal distribution with mean = 0, and sd =1. The expected correlation between A and B is 0, because both samples are taken randomly.</p>
 <ol style="list-style-type: decimal">
 <li><p>Generate the distribution of correlations (Pearson r values) that could be obtained by chance (simulate 10,000 times)</p></li>
 <li><p>Find the critical value such that the absolute value of the correlation occurs less than 5% of the time by chance.</p></li>
@@ -472,11 +469,11 @@ simulatedT-(1-pt(sample,9))</code></pre>
 <pre class="r"><code>correlationdist &lt;- replicate(10000,cor(rnorm(10,0,1),rnorm(10,0,1)))
 dist &lt;- sort(abs(correlationdist))
 dist[9500]</code></pre>
-<pre><code>## [1] 0.6270548</code></pre>
+<pre><code>## [1] 0.6360514</code></pre>
 <pre class="r"><code>correlationdist &lt;- replicate(10000,cor(rnorm(100,0,1),rnorm(100,0,1)))
 dist &lt;- sort(abs(correlationdist))
 dist[9500]</code></pre>
-<pre><code>## [1] 0.1987315</code></pre>
+<pre><code>## [1] 0.1954811</code></pre>
 </div>
 <div id="f-values" class="section level2">
 <h2>F-values</h2>
@@ -490,7 +487,6 @@ alldata &lt;- data.frame(A,B,C)</code></pre>
 </div>
 <div id="f-simulation" class="section level2">
 <h2>F simulation</h2>
-<p>Assume that there are three groups of different subjects. Each group has four subjects. The subject means for all subjects are sampled randomly from normal distribution with mean =0 and sd =1.</p>
 <ol style="list-style-type: decimal">
 <li><p>Run a simulation 10,000 times to construct the simulated F-distribution. On each run, sample new numbers into the three groups, then compute F and save it.</p></li>
 <li><p>Using the simulated F-distribution, what is the critical value of F for alpha set at, p&lt;.05</p></li>
@@ -509,7 +505,7 @@ return(my_F)
 sim_fs &lt;- replicate(1000,sim_F())
 sort_fs&lt;-sort(sim_fs)
 sort_fs[950]</code></pre>
-<pre><code>## [1] 4.097702</code></pre>
+<pre><code>## [1] 4.105076</code></pre>
 <pre class="r"><code>qf(.05,2,9, lower.tail=FALSE)</code></pre>
 <pre><code>## [1] 4.256495</code></pre>
 </div>
