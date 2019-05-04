@@ -1,1 +1,4 @@
 base
+data.table
+dplyr
+ggplot2

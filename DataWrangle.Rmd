@@ -14,34 +14,23 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-## Flanker task
+## Loading libraries 
 
-In a flanker task, participants identify a central stimulus (as quickly and accurately) as possible, while ignoring distracting stimuli presented on the left or right of the central stimulus (the flankers). 
-
-For example, the stimulus could be "HHH", and the correct response would be H. This is called a compatible (or congruent) stimulus because the flanking Hs are the same as the central stimulus. Alternatively, the stimulus could be "HSH", and the correct resposne would be S. This is called an incompatible (or incongruent) stimulus because the flanking Hs are different from the central stimulus. 
-
-The data for this assignment come from a flanker task where participants responded to many flanker stimuli over several trials. 
-
-## Load the data and libraries you will use
-
-```{r, eval=FALSE}
+```{r}
 library(data.table)
 library(dplyr)
 library(ggplot2)
 
 
-# get the file names
 names <- list.files(path="FlankerData")
 
-# create headers for each column
 headers <- c("stimulus","congruency","proportion",
                  "block","condition","dualtask","unknown",
-                 "stimulus_onset","response_time","response","subject")
-# Load data
-# create empty dataframe
+                 "stimulusonset","responsetime","response","subject")
+
+#Making empty data frame, make loop loading data into data frame 
 alldata<-data.frame()
 
-# loop to add each file to the dataframe
 for(i in names){
   onesubject <- fread(paste("FlankerData/",i, sep=""))
   names(onesubject) <- headers
@@ -56,8 +45,6 @@ for(i in names){
 
 ### get accuracy for each trial
 
-A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)
-
 ```{r, eval=FALSE}
 
 centerletter <- unlist(lapply(strsplit(alldata$stimulus,""),
@@ -66,22 +53,21 @@ centerletter <- unlist(lapply(strsplit(alldata$stimulus,""),
 centerletter <- unlist(strsplit(alldata$stimulus,""))
 everyothernumber <- seq(1,12672, 2)
 
-for (i in length(centerletter)) {
-center_letter1 <- i[-everyothernumber]
+#looping to find center letter?
+#for (i in length(centerletter)) {
+#center_letter1 <- i[-everyothernumber]
 
 
-alldata <- cbind(all_data,center_letter)
+alldata <- cbind(alldata,centerletter)
 alldata <- alldata %>%
               mutate(response = tolower(response),
-                     center_letter = tolower(center_letter),
-                     accuracy = response==center_letter)
+                     centerletter = tolower(centerletter),
+                     accuracy = response==centerletter)
 
 }
 ```
 
 ### Get Reaction time on each trial
-
-The stimulus_onset column gives a computer timestamp in milliseconds indicating when the stimulus was presented. The response_time column is a timestamp in milliseconds for the response. The difference between the two (response_time  - stimulus_onset) is the reaction time in milliseconds. Add a column that calculates the reaction time on each trial.
 
 ```{r, eval=FALSE}
 
@@ -96,11 +82,9 @@ alldata <- alldata %>%
 
 ## Checks
 
-Check how many trials each subject completed in the congruent and incongruent conditions, the mean accuracy for each subject in each congruency condition, and the mean RT for each subject in each congruency condition.
-
 ```{r, eval=FALSE}
-#Finding the numbers of congruent/incongruent trials 
 
+#Finding the numbers of congruent/incongruent trials 
 check <- alldata$congruency 
 
 numbersofI <- 0
@@ -115,18 +99,13 @@ for (i in check) {
   }
 }
   
-
-
 ```
-
 
 
 ### Exclusion
 
-It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms
-
 ```{r, eval=FALSE}
-tooslow <- alldata %>%
+slowdata <- alldata %>%
               filter(RT < 2000)
 ```
 
@@ -140,25 +119,25 @@ tooslow <- alldata %>%
 meanRTs <- restricted %>%
                     filter(accuracy == TRUE) %>%
                     group_by(subject,congruency) %>%
-                    summarise(mean_RT = mean(RT))
+                    summarise(meanRTs = mean(RT))
 ```
-```
+
 
 2. Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.
 
 ```{r, eval=FALSE}
 congruencymeans <- meanRTs %>%
                       group_by(congruency) %>%
-                      summarise(meanRT = mean(mean_RT),
-                                SEM = sd(mean_RT)/sqrt(length(mean_RT)))
+                      summarise(meanRTs = mean(meanRTs),
+                                SEM = sd(meanRTs)/sqrt(length(meanRTs)))
 knitr::kable(congruencymeans)
-ggplot(congruencymeans, aes(x=congruency,y=meanRT,
+ggplot(congruencymeans, aes(x=congruency,y=meanRTs,
                              fill=congruency))+
   geom_bar(stat="identity")+
   theme_classic(base_size=12)+
   ylab("Mean Reaction Time (ms)")+
-  geom_errorbar(aes(ymin=meanRT-SEM,
-                    ymax=meanRT+SEM),
+  geom_errorbar(aes(ymin=meanRTs-SEM,
+                    ymax=meanRTs+SEM),
                 position=position_dodge(width=0.9),
                 width=.2,
                 color="black")+
@@ -169,33 +148,57 @@ ggplot(congruencymeans, aes(x=congruency,y=meanRT,
 
 3. Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect
 
-**tip:** Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.
 
-```{r}
+```{r, eval=FALSE}
 
+flankermeans <- subjectmeanRTs[subjectmeanRTs$congruency=="I",]$meanRTs - 
+  subjectmeanRTs[subjectmeanRTs$congruency=="C",]$meanRTs
+flanker <- data.frame(dv = "flanker effect",
+                         flankermean1 = mean(flankermeans),
+                         SEM = sd(flankermeans)/sqrt(length(flankermeans)))
+
+ggplot(flanker_df, aes(x=dv, y=flankermean1))+
+  geom_bar(stat="identity")+
+  theme_classic(base_size=12)+
+  ylab("Flanker Effect")+
+  geom_errorbar(aes(ymin=flankermean1-SEM,
+                    ymax=flankermean1+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")
   
 ```
 
 
 ### Exploratory analysis
 
-Multiple questions may often be asked of data, especially questions that may not have been of original interest to the researchers. 
-
-In flanker experiments, like this one, it is well known that the flanker effect is modulated by the nature of the previous trial. Specifically, the flanker effect on trial n (the current trial), is larger when the previous trial (trial n-1) involved a congruent item, compared to an incongruent item. 
-
-Transform the data to conduct a sequence analysis. The dataframe should already include a factor (column) for the congruency level of trial n. Make another column that codes for the congruency level of trial n-1 (the previous trial). This creates a 2x2 design with trial n congruency x trial n-1 congruency. 
-
-First get teh subject means for each condition, then create a table and plot for teh overall means and SEMs in each condition. This should include:
-
-1. trial n congruent : trial n-1 congruent
-2. trial n incongruent : trial n-1 congruent
-3. trial n congruent : trial n-1 incongruent
-4. trial n incongruent : trial n-1 incongruent
-
-**tip:** be careful, note that the first trial in each experiment can not be included, because it had no preceding trial
-
-```{r}
-
+```{r, eval=FALSE}
+previous_congruency <- c(0,alldata$congruency[1:(length(alldata$congruency)-1)])
+sequence_subjects <- alldata %>%
+                      mutate(n1_congruency = previous_congruency) %>%
+                      filter(trial > 1,
+                             RT < 2000,
+                             accuracy == TRUE) %>%
+                      group_by(subject,congruency,n1_congruency) %>%
+                      summarise(meanRT = mean(RT))
+sequence_means <- sequence_subjects %>%
+                    group_by(congruency,n1_congruency) %>%
+                    summarise(mean_RT = mean(meanRT),
+                              SEM = sd(meanRT)/sqrt(length(meanRT)))
+                      
+knitr::kable(sequence_means)
+ggplot(sequence_means, aes(x=n1_congruency, y=mean_RT,
+                           group=congruency,
+                           fill=congruency))+
+  geom_bar(stat="identity", position="dodge")+
+  theme_classic(base_size=12)+
+  ylab("Mean RT (ms")+
+  geom_errorbar(aes(ymin=mean_RT-SEM,
+                    ymax=mean_RT+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")+
+  coord_cartesian(ylim=c(600,900))
 
 ```
 

@@ -420,31 +420,22 @@ div.tocify {
 </div>
 
 
-<div id="flanker-task" class="section level2">
-<h2>Flanker task</h2>
-<p>In a flanker task, participants identify a central stimulus (as quickly and accurately) as possible, while ignoring distracting stimuli presented on the left or right of the central stimulus (the flankers).</p>
-<p>For example, the stimulus could be “HHH”, and the correct response would be H. This is called a compatible (or congruent) stimulus because the flanking Hs are the same as the central stimulus. Alternatively, the stimulus could be “HSH”, and the correct resposne would be S. This is called an incompatible (or incongruent) stimulus because the flanking Hs are different from the central stimulus.</p>
-<p>The data for this assignment come from a flanker task where participants responded to many flanker stimuli over several trials.</p>
-</div>
-<div id="load-the-data-and-libraries-you-will-use" class="section level2">
-<h2>Load the data and libraries you will use</h2>
+<div id="loading-libraries" class="section level2">
+<h2>Loading libraries</h2>
 <pre class="r"><code>library(data.table)
 library(dplyr)
 library(ggplot2)
 
 
-# get the file names
 names &lt;- list.files(path=&quot;FlankerData&quot;)
 
-# create headers for each column
 headers &lt;- c(&quot;stimulus&quot;,&quot;congruency&quot;,&quot;proportion&quot;,
                  &quot;block&quot;,&quot;condition&quot;,&quot;dualtask&quot;,&quot;unknown&quot;,
-                 &quot;stimulus_onset&quot;,&quot;response_time&quot;,&quot;response&quot;,&quot;subject&quot;)
-# Load data
-# create empty dataframe
+                 &quot;stimulusonset&quot;,&quot;responsetime&quot;,&quot;response&quot;,&quot;subject&quot;)
+
+#Making empty data frame, make loop loading data into data frame 
 alldata&lt;-data.frame()
 
-# loop to add each file to the dataframe
 for(i in names){
   onesubject &lt;- fread(paste(&quot;FlankerData/&quot;,i, sep=&quot;&quot;))
   names(onesubject) &lt;- headers
@@ -457,28 +448,27 @@ for(i in names){
 <h2>Pre-processing</h2>
 <div id="get-accuracy-for-each-trial" class="section level3">
 <h3>get accuracy for each trial</h3>
-<p>A correct response occurs when the letter in the response column is the same as the letter in the middle position of item in the stimulus column. Create an accuracy column that codes whether the response was correct or incorrect on each trial (coding can be TRUE/FALSE, 0/1, or some other coding scheme that identifies correct vs incorrect)</p>
 <pre class="r"><code>centerletter &lt;- unlist(lapply(strsplit(alldata$stimulus,&quot;&quot;),
                            FUN=function(x)unlist(x)[2]))
 
 centerletter &lt;- unlist(strsplit(alldata$stimulus,&quot;&quot;))
 everyothernumber &lt;- seq(1,12672, 2)
 
-for (i in length(centerletter)) {
-center_letter1 &lt;- i[-everyothernumber]
+#looping to find center letter?
+#for (i in length(centerletter)) {
+#center_letter1 &lt;- i[-everyothernumber]
 
 
-alldata &lt;- cbind(all_data,center_letter)
+alldata &lt;- cbind(alldata,centerletter)
 alldata &lt;- alldata %&gt;%
               mutate(response = tolower(response),
-                     center_letter = tolower(center_letter),
-                     accuracy = response==center_letter)
+                     centerletter = tolower(centerletter),
+                     accuracy = response==centerletter)
 
 }</code></pre>
 </div>
 <div id="get-reaction-time-on-each-trial" class="section level3">
 <h3>Get Reaction time on each trial</h3>
-<p>The stimulus_onset column gives a computer timestamp in milliseconds indicating when the stimulus was presented. The response_time column is a timestamp in milliseconds for the response. The difference between the two (response_time - stimulus_onset) is the reaction time in milliseconds. Add a column that calculates the reaction time on each trial.</p>
 <pre class="r"><code>alldata &lt;- alldata %&gt;%
               mutate(RT = as.integer(responsetime - stimulusonset))
 
@@ -487,9 +477,7 @@ alldata &lt;- alldata %&gt;%
 </div>
 <div id="checks" class="section level2">
 <h2>Checks</h2>
-<p>Check how many trials each subject completed in the congruent and incongruent conditions, the mean accuracy for each subject in each congruency condition, and the mean RT for each subject in each congruency condition.</p>
 <pre class="r"><code>#Finding the numbers of congruent/incongruent trials 
-
 check &lt;- alldata$congruency 
 
 numbersofI &lt;- 0
@@ -505,8 +493,7 @@ for (i in check) {
 }</code></pre>
 <div id="exclusion" class="section level3">
 <h3>Exclusion</h3>
-<p>It is common to exclude Reaction times that are very slow. There are many methods and procedures for excluding outlying reaction times. To keep it simple, exclude all RTs that are longer than 2000 ms</p>
-<pre class="r"><code>tooslow &lt;- alldata %&gt;%
+<pre class="r"><code>slowdata &lt;- alldata %&gt;%
               filter(RT &lt; 2000)</code></pre>
 </div>
 </div>
@@ -520,23 +507,22 @@ for (i in check) {
 <pre class="r"><code>meanRTs &lt;- restricted %&gt;%
                     filter(accuracy == TRUE) %&gt;%
                     group_by(subject,congruency) %&gt;%
-                    summarise(mean_RT = mean(RT))</code></pre>
-<p>```</p>
+                    summarise(meanRTs = mean(RT))</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Get the overall mean RTs and SEMs (standard errors of the mean) for the congruent and incongruent condition. Make a table and graph.</li>
 </ol>
 <pre class="r"><code>congruencymeans &lt;- meanRTs %&gt;%
                       group_by(congruency) %&gt;%
-                      summarise(meanRT = mean(mean_RT),
-                                SEM = sd(mean_RT)/sqrt(length(mean_RT)))
+                      summarise(meanRTs = mean(meanRTs),
+                                SEM = sd(meanRTs)/sqrt(length(meanRTs)))
 knitr::kable(congruencymeans)
-ggplot(congruencymeans, aes(x=congruency,y=meanRT,
+ggplot(congruencymeans, aes(x=congruency,y=meanRTs,
                              fill=congruency))+
   geom_bar(stat=&quot;identity&quot;)+
   theme_classic(base_size=12)+
   ylab(&quot;Mean Reaction Time (ms)&quot;)+
-  geom_errorbar(aes(ymin=meanRT-SEM,
-                    ymax=meanRT+SEM),
+  geom_errorbar(aes(ymin=meanRTs-SEM,
+                    ymax=meanRTs+SEM),
                 position=position_dodge(width=0.9),
                 width=.2,
                 color=&quot;black&quot;)+
@@ -544,21 +530,50 @@ ggplot(congruencymeans, aes(x=congruency,y=meanRT,
 <ol start="3" style="list-style-type: decimal">
 <li>Compute the flanker effect for each subject, taking the difference between their mean incongruent and congruent RT. Then plot the mean flanker effect, along with the SEM of the mean flanker effect</li>
 </ol>
-<p>**<a href="tip:**" class="uri">tip:**</a> Not all problems have an easy solution in dplyr, this is one them. You may have an easier time using logical indexing of the dataframe to solve this part.</p>
+<pre class="r"><code>flankermeans &lt;- subjectmeanRTs[subjectmeanRTs$congruency==&quot;I&quot;,]$meanRTs - 
+  subjectmeanRTs[subjectmeanRTs$congruency==&quot;C&quot;,]$meanRTs
+flanker &lt;- data.frame(dv = &quot;flanker effect&quot;,
+                         flankermean1 = mean(flankermeans),
+                         SEM = sd(flankermeans)/sqrt(length(flankermeans)))
+
+ggplot(flanker_df, aes(x=dv, y=flankermean1))+
+  geom_bar(stat=&quot;identity&quot;)+
+  theme_classic(base_size=12)+
+  ylab(&quot;Flanker Effect&quot;)+
+  geom_errorbar(aes(ymin=flankermean1-SEM,
+                    ymax=flankermean1+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color=&quot;black&quot;)</code></pre>
 </div>
 <div id="exploratory-analysis" class="section level3">
 <h3>Exploratory analysis</h3>
-<p>Multiple questions may often be asked of data, especially questions that may not have been of original interest to the researchers.</p>
-<p>In flanker experiments, like this one, it is well known that the flanker effect is modulated by the nature of the previous trial. Specifically, the flanker effect on trial n (the current trial), is larger when the previous trial (trial n-1) involved a congruent item, compared to an incongruent item.</p>
-<p>Transform the data to conduct a sequence analysis. The dataframe should already include a factor (column) for the congruency level of trial n. Make another column that codes for the congruency level of trial n-1 (the previous trial). This creates a 2x2 design with trial n congruency x trial n-1 congruency.</p>
-<p>First get teh subject means for each condition, then create a table and plot for teh overall means and SEMs in each condition. This should include:</p>
-<ol style="list-style-type: decimal">
-<li>trial n congruent : trial n-1 congruent</li>
-<li>trial n incongruent : trial n-1 congruent</li>
-<li>trial n congruent : trial n-1 incongruent</li>
-<li>trial n incongruent : trial n-1 incongruent</li>
-</ol>
-<p>**<a href="tip:**" class="uri">tip:**</a> be careful, note that the first trial in each experiment can not be included, because it had no preceding trial</p>
+<pre class="r"><code>previous_congruency &lt;- c(0,alldata$congruency[1:(length(alldata$congruency)-1)])
+sequence_subjects &lt;- alldata %&gt;%
+                      mutate(n1_congruency = previous_congruency) %&gt;%
+                      filter(trial &gt; 1,
+                             RT &lt; 2000,
+                             accuracy == TRUE) %&gt;%
+                      group_by(subject,congruency,n1_congruency) %&gt;%
+                      summarise(meanRT = mean(RT))
+sequence_means &lt;- sequence_subjects %&gt;%
+                    group_by(congruency,n1_congruency) %&gt;%
+                    summarise(mean_RT = mean(meanRT),
+                              SEM = sd(meanRT)/sqrt(length(meanRT)))
+                      
+knitr::kable(sequence_means)
+ggplot(sequence_means, aes(x=n1_congruency, y=mean_RT,
+                           group=congruency,
+                           fill=congruency))+
+  geom_bar(stat=&quot;identity&quot;, position=&quot;dodge&quot;)+
+  theme_classic(base_size=12)+
+  ylab(&quot;Mean RT (ms&quot;)+
+  geom_errorbar(aes(ymin=mean_RT-SEM,
+                    ymax=mean_RT+SEM),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color=&quot;black&quot;)+
+  coord_cartesian(ylim=c(600,900))</code></pre>
 </div>
 </div>
 
