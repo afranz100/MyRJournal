@@ -49,7 +49,7 @@ hist(a)
 #Adding external image 
 ```{r}
 library(knitr)
-knitr::include_graphics("xarimages/puppy.jpg")
+knitr::include_graphics("Final_Presentation/puppy.jpg")
 ```
 
 ---

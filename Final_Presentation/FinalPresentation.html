@@ -1,95 +1,192 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title>My New Presentation</title>
+    <title>Image Processing in R</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Ana-Louise" />
-    <link href="site_libs/remark-css/default.css" rel="stylesheet" />
-    <link href="site_libs/remark-css/metropolis.css" rel="stylesheet" />
-    <link href="site_libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <meta name="author" content="Ana-Louise Franz" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# My New Presentation
-## A Subtitle
-### Ana-Louise
-### 2016/12/12 (updated: 2019-05-09)
+# Image Processing in R
+## wth <em>imager</em>
+### Ana-Louise Franz
 
 ---
-
-
-
 
 class: inverse, center, middle
-#Opening slide
+
+# Before Loading *imager*
 
 ---
 
+class: middle
 
-# Title of my first slide
-## first thing: 
-- ha ha ha 
-## second thing: 
-- lol lol lol 
+## XQuartz
 
-
----
-# Adding R Codeblocks
-
-
-```r
-a &lt;- rnorm(10,0,1)
-print(a)
-```
-
-```
-##  [1]  0.6171258  0.6911053  0.4296799 -0.3871569 -0.5086448  0.7471412
-##  [7] -0.2841127 -0.5095716  0.3683990 -1.5431525
-```
-
----
-
-# Graphs 
-&lt;img src="Test_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
----
-
-#Adding external image 
-
-```r
-library(knitr)
-knitr::include_graphics("Final_Presentation/puppy.jpg")
-```
-
-&lt;img src="Final_Presentation/puppy.jpg" width="1323" /&gt;
-
----
-#Using Columns 
-.pull-left[
-texint on the left
-
-]
-
-.pull-right [
-on the right side 
-]
-
----
-
-# Incrementing displays
-
-showing this first 
+- Before loading imager, "XQuartz" had to be installed
 
 --
 
-showing this second 
+- "Apple created the XQuartz project as a community effort to further develop and support X11 on Mac."
 
 --
 
-showing this third 
+- https://www.xquartz.org
 
 ---
+class: inverse, center, middle
+
+# Using *imager*
+
+---
+
+class: middle
+
+## Loading *imager*
+
+--
+
+- The package must be installed from CRAN 
+
+--
+
+- The package must then be loaded using:
+
+--
+
+
+```r
+library(imager)
+```
+
+---
+
+## Pre-loaded Images in *imager*
+
+--
+
+
+```r
+plot(boats)
+```
+
+&lt;img src="FinalPresentation_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Getting Info About Images
+
+--
+
+
+```r
+boats
+```
+
+```
+## Image. Width: 256 pix Height: 384 pix Depth: 1 Colour channels: 3
+```
+
+--
+
+- Image information is as numeric imager-array
+
+--
+- You can do math using the image
+
+--
+
+```r
+mean(boats)
+```
+
+```
+## [1] 0.5089061
+```
+
+---
+## *Imager* Math in Pictures
+
+--
+
+
+```r
+layout(t(1:2))
+plot(boats,rescale=FALSE)
+plot(boats/2,rescale=FALSE)
+```
+
+&lt;img src="FinalPresentation_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Changing Picture Colors
+--
+
+```r
+rgb(0,1,0)
+```
+--
+
+```r
+cscale &lt;- function(r,g,b) rgb(g,r,b)
+plot(boats,colourscale=cscale,rescale=FALSE)
+```
+
+&lt;img src="FinalPresentation_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Loading Your Own Images
+
+--
+
+```r
+fpath &lt;- system.file('extdata/Leonardo_Birds.jpg',package='imager') 
+im &lt;- load.image(fpath)
+plot(im)
+```
+
+&lt;img src="FinalPresentation_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Loading Your Own Images
+
+
+```r
+layout(t(1:2))
+plot(im,rescale=FALSE)
+plot(im/2,rescale=FALSE)
+```
+
+&lt;img src="FinalPresentation_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: middle 
+## Just The Beginning
+
+- Many more things can be done in *imager*
+
+--
+
+- Loading multiple pictures at once 
+
+--
+
+- Loading videos 
+
+--
+
+- Graphing color orientation
+
+---
+class: inverse, middle, center
+
+# THE END
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
