@@ -20,4 +20,6 @@ navbar:
       href: DataWrangle.html
     - text: "Statistics"
       href: Statistics.html
+    - text: "Final Presentation"
+      href: FinalPresentation.html
 output_dir: "docs"
