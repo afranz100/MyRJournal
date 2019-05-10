@@ -50,7 +50,6 @@ class: middle
 
 - The package must then be loaded using:
 
---
 
 ```{r, results='hide',message=FALSE}
 
@@ -106,7 +105,7 @@ plot(boats/2,rescale=FALSE)
 ---
 ## Changing Picture Colors
 --
-```{r, eval=FALSE}
+```{r}
 rgb(0,1,0)
 ```
 --
@@ -124,8 +123,8 @@ plot(boats,colourscale=cscale,rescale=FALSE)
 ```{r, results='hide', message=FALSE, fig.align='center', fig.height=4.75}
 
 fpath <- system.file('extdata/Leonardo_Birds.jpg',package='imager') 
-im <- load.image(fpath)
-plot(im)
+birds <- load.image(fpath)
+plot(birds)
 
 ```
 
@@ -135,8 +134,8 @@ plot(im)
 ```{r, results='hide', message=FALSE, fig.align='center', fig.height=4.75}
 
 layout(t(1:2))
-plot(im,rescale=FALSE)
-plot(im/2,rescale=FALSE)
+plot(birds,rescale=FALSE)
+plot(birds/2,rescale=FALSE)
 ```
 
 ---
@@ -161,3 +160,4 @@ class: middle
 class: inverse, middle, center
 
 # THE END
+

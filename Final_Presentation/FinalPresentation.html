@@ -57,7 +57,6 @@ class: middle
 
 - The package must then be loaded using:
 
---
 
 
 ```r
@@ -130,6 +129,10 @@ plot(boats/2,rescale=FALSE)
 ```r
 rgb(0,1,0)
 ```
+
+```
+## [1] "#00FF00"
+```
 --
 
 ```r
@@ -147,8 +150,8 @@ plot(boats,colourscale=cscale,rescale=FALSE)
 
 ```r
 fpath &lt;- system.file('extdata/Leonardo_Birds.jpg',package='imager') 
-im &lt;- load.image(fpath)
-plot(im)
+birds &lt;- load.image(fpath)
+plot(birds)
 ```
 
 &lt;img src="FinalPresentation_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
@@ -159,8 +162,8 @@ plot(im)
 
 ```r
 layout(t(1:2))
-plot(im,rescale=FALSE)
-plot(im/2,rescale=FALSE)
+plot(birds,rescale=FALSE)
+plot(birds/2,rescale=FALSE)
 ```
 
 &lt;img src="FinalPresentation_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
