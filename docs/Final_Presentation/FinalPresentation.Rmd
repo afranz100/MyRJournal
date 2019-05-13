@@ -122,9 +122,12 @@ plot(boats,colourscale=cscale,rescale=FALSE)
 --
 ```{r, results='hide', message=FALSE, fig.align='center', fig.height=4.75}
 
-fpath <- system.file('extdata/Leonardo_Birds.jpg',package='imager') 
-birds <- load.image(fpath)
-plot(birds)
+horses <- load.image("horses.jpg")
+plot(horses)
+
+layout(t(1:2))
+plot(horses,rescale=FALSE)
+plot(horses/2,rescale=FALSE)
 
 ```
 
@@ -150,8 +153,3 @@ class: middle
 class: inverse, middle, center
 
 # THE END
-
-```{r, eval=FALSE}
-load.image(www.pngonly.com/wp-content/uploads/2017/06/Nature-Flowers-PNG-Image.png)
-```
-
