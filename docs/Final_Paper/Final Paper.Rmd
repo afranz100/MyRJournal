@@ -68,12 +68,35 @@ plot(boats/2,rescale=FALSE)
 
 ## Changing the color scheme of an image
 
-Wthin the "plot"" call, you can also change the color scheme of the image. "rgb" defines the order of the colors and their corresponding numberic value. You are able to s
+Within the "plot"" call, you can also change the color scheme of the image. "rgb" defines the order of the colors and their corresponding numberic value. You are able to change this order using a function displayed below. This function, replaces red with green, and green with red and leaves blue the same. Then, included in the "plots" call, you can define a specific "colourscale"" that you have previously defined. Once again including "rescale" will ensure that the resulting plot is not rescalled to the original.  
 
 ```{r, results='hide', message=FALSE, fig.align='center', fig.height=4.75}
 
-cscale <- function(r,g,b) rgb(g,r,b)
+cscale <- function(r,g,b) rgb(b,r,g)
 plot(boats,colourscale=cscale,rescale=FALSE)
+
 ```
 
+## Loading Your Own Images
 
+You are also able to load and edit your own images in imager. You can do this by using the "load.image" call. You can load images directly from the web using the URL. You can also load images from your computer. Saving them in the same project and specific folder you are using will make the call much simpler. As you can see below, I saved the image "horses" as a jpeg (ending in .jpg) in the folder that I also had my .rmd file. 
+```{r, results='hide', message=FALSE, fig.align='center', fig.height=4.75}
+
+horses <- load.image("horses.jpg")
+plot(horses)
+
+
+```
+
+You can perform similar math manipulations using the image that you loaded. 
+
+```{r, results='hide', message=FALSE, fig.align='center', fig.height=4.75}
+
+layout(t(1:2))
+plot(horses,rescale=FALSE)
+plot(horses/5,rescale=FALSE)
+```
+
+# Other Things You can do in *imager*
+
+The functions shown in this tutorial are just the beginning of what you can do with imager. 
