@@ -21,5 +21,5 @@ navbar:
     - text: "Statistics"
       href: Statistics.html
     - text: "Final Presentation"
-      href: FinalPresentation.html
+      href: Final_Presentation/FinalPresentation.html
 output_dir: "docs"
