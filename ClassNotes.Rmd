@@ -454,3 +454,6 @@ hist(rnorm(n=10, mean=0, sd=1))
 -bullets: "- word"
 
 
+
+
+echo=FALSE -> prevents code from showing that produced result 

@@ -161,3 +161,7 @@ class: inverse, middle, center
 
 # THE END
 
+```{r, eval=FALSE}
+load.image(www.pngonly.com/wp-content/uploads/2017/06/Nature-Flowers-PNG-Image.png)
+```
+
