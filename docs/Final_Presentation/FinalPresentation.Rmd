@@ -129,16 +129,6 @@ plot(birds)
 ```
 
 ---
-## Loading Your Own Images
-
-```{r, results='hide', message=FALSE, fig.align='center', fig.height=4.75}
-
-layout(t(1:2))
-plot(birds,rescale=FALSE)
-plot(birds/2,rescale=FALSE)
-```
-
----
 class: middle 
 ## Just The Beginning
 
