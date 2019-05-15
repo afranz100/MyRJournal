@@ -102,3 +102,7 @@ plot(horses/5,rescale=FALSE)
 The functions shown in this tutorial are just the beginning of what you can do with imager. You can edit, resize and warp images. 
 
 Simon Barthelmé has written a few very interesting step by step tutorials for various editing strategies in imager. You can find all of his work in the references page.
+
+https://dahtah.github.io/imager/
+https://cran.r-project.org/web/packages/imager/vignettes/gettingstarted.html
+
