@@ -18,19 +18,19 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 ###XQuartz
 
-If you are using a mac, you must install XQuartz before loading imager. It is a download that was created by Apple as "a community effort to fruther develop and support X11 on Mac", something which is no longer included with Macs (Online Apple Support). XQuartz can be downloaded [here](https://www.xquartz.org). 
+If you are using a mac, you must install XQuartz before loading imager. It is a download that was created by Apple as "a community effort to fruther develop and support X11 on Mac", something which is no longer included with Macs (Mac Support). XQuartz can be downloaded [here](https://www.xquartz.org). 
 
 #Using *imager*
 
 ###Loading *imager*
-Once XQuartz is downloaded the package must be installed from CRAN. Once in, you can call it using the library call. 
+Once XQuartz is downloaded, the package must be installed from CRAN. Once in, you can call it using the library call. 
 
 ```{r, results='hide',message=FALSE}
 library(imager)
 ```
 
 ###Pre-loaded images 
-Imager has a pre-loaded image called "boats". You can use this image to investigate a number of interesting features of imager. Firstly, in order to view the image as an image you must use the plot call. 
+Imager has a pre-loaded image called "boats". You can use this image to investigate a number of interesting features of imager. Firstly, in order to view the image as an image you must use the "plot" call. 
 
 ```{r, results='hide', message=FALSE, fig.align='center', fig.height=5.5}
 
@@ -44,7 +44,7 @@ The image is only displayed as an picture using the plot call because on the bac
 boats
 ```
 
-You are given the dimentions of the image, in pixels as well as well as the depth and the number of color channels. When the depth is over 1, there are multiple frames and it is actually a movie. 
+You are given the dimensions of the image, in pixels as well as well as the depth and the number of color channels. When the depth is over 1, there are multiple frames and it is actually a movie. 
 
 ###*Imager* Math 
 
@@ -56,7 +56,7 @@ mean(boats)
 
 Though the value of 0.5089061 is not able to be visualized using imager, you can see the results of math on images using specific calls. 
 
-You can divide "boats" by 2. In order to view both the original image as well as the edited image we have to add a few calls. First, we must change the layout so we can see both images in the same frame. Additionally, the plot call automatically recales images to originial size and color. In order to stop this and be able to see the difference between the two images you must set rescale=FALSE.
+You can divide "boats" by 2. In order to view both the original image as well as the edited image we have to add a few calls. First, we must change the layout so we can see both images in the same frame. Additionally, the plot call automatically rescales images to originial size and color. In order to stop this and be able to see the difference between the two images you must set re-scale=FALSE.
 
 ```{r, results='hide', message=FALSE, fig.align='center', fig.height=5.5}
 
@@ -68,7 +68,7 @@ plot(boats/2,rescale=FALSE)
 
 ###Changing the color scheme of an image
 
-Within the "plot"" call, you can also change the color scheme of the image. "rgb" defines the order of the colors and their corresponding numberic value. You are able to change this order using a function displayed below. This function, replaces red with green, and green with red and leaves blue the same. Then, included in the "plots" call, you can define a specific "colourscale"" that you have previously defined. Once again including "rescale" will ensure that the resulting plot is not rescalled to the original.  
+Within the "plot"" call, you can also change the color scheme of the image. "rgb" defines the order of the colors and their corresponding numeric value. You are able to change this order using a function displayed below. This function, replaces red with green, and green with red and leaves blue the same. Then, included in the "plots" call, you can define a specific "colourscale"" that you have previously defined. Once again including "re-scale" will ensure that the resulting plot is not re-scaled to the original.  
 
 ```{r, results='hide', message=FALSE, fig.align='center', fig.height=4.75}
 
@@ -99,7 +99,7 @@ plot(horses/5,rescale=FALSE)
 
 #Other Things You can do in *imager*
 
-The functions shown in this tutorial are just the beginning of what you can do with imager. You can edit, resize and warp images, along with other cool editing. 
+The functions shown in this tutorial are just the beginning of what you can do with imager. You can edit, re-size and warp images, along with other cool editing. 
 
 Simon Barthelmé has written a few very interesting step by step tutorials for various editing strategies in imager. You can find all of his work in the references page.
 
