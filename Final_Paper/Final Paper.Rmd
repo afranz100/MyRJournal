@@ -99,10 +99,12 @@ plot(horses/5,rescale=FALSE)
 
 #Other Things You can do in *imager*
 
-The functions shown in this tutorial are just the beginning of what you can do with imager. You can edit, resize and warp images. 
+The functions shown in this tutorial are just the beginning of what you can do with imager. You can edit, resize and warp images, along with other cool editing. 
 
 Simon Barthelmé has written a few very interesting step by step tutorials for various editing strategies in imager. You can find all of his work in the references page.
 
-https://dahtah.github.io/imager/
-https://cran.r-project.org/web/packages/imager/vignettes/gettingstarted.html
+# Referenes 
 
+Mac Support, (2017, May 02). About X11 for Mac. Retrieved from https://support.apple.com/en-us/HT201341
+
+Barthelmé, S. (2019, January 21). Getting started with imager. Retrieved from https://cran.r-project.org/web/packages/imager/vignettes/gettingstarted.html
